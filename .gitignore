@@ -1,3 +1,8 @@
+#Chỉ định các tệp và thư mục mà bạn không muốn Git theo dõi hoặc thêm vào repository
+
+# Node modules
+node_modules/
+
 # Logs
 logs
 *.log
