@@ -1,0 +1,24 @@
+{
+  "name": "apple-store",
+  "version": "1.0.0",
+  "description": "- Website cung cấp một nền tảng phân phối trực tiếp các mặt hàng chính hãng của Apple như Iphone, Ipad, Macbook, Airpods, Apple Watch và nhiều phụ kiện khác. Hệ thống với thao tác đơn giản, thân thiện giúp người dùng dễ dàng tìm kiếm, xem chi tiết sản phẩm và bao gồm cả chức năng thanh toán, đặt hàng. Website sẽ tối ưu hóa trải nghiệm mua sắm trực tuyến và đảm bảo tính an toàn khi giao dịch.\r - Website cũng tích hợp một số các chức năng quản lý sản phẩm và thống kê dành riêng cho quản trị viên, giúp việc vận hành và theo dõi trở nên thuận tiện.",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DangHuy04/_N06-PTTKPM_Nhom11.git"
+  },
+  "author": "Ben",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DangHuy04/_N06-PTTKPM_Nhom11/issues"
+  },
+  "homepage": "https://github.com/DangHuy04/_N06-PTTKPM_Nhom11#readme",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.9.3"
+  }
+}
