@@ -293,7 +293,7 @@ img {
   display: inline-block;
   width: 200px;
   height: 39px;
-  background-image: url("./public/img/apple-video.png");
+  background-image: url(../img/apple-video.png);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -301,7 +301,7 @@ img {
 }
 
 .ipad {
-  background-image: url(./img/ipad-1.jpg);
+  background-image: url(../img/ipad-1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -327,7 +327,7 @@ p {
 }
 
 .ipad1 {
-  background-image: url(./img/ipad-2.jpg);
+  background-image: url(../img/ipad-2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -347,13 +347,13 @@ p {
   display: inline-block;
   width: 170px;
   height: 39px;
-  background-image: url(./img/ipad-2_1.png);
+  background-image: url(../img/ipad-2_1.png);
   background-size: cover;
   background-position: center;
 }
 
 .iphone {
-  background-image: url(./img/iphone15.jpg);
+  background-image: url(../img/iphone15.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -381,7 +381,7 @@ p {
 }
 
 .layer1-1 {
-  background-image: url(./img/iphone15xanh.jpg);
+  background-image: url(../img/iphone15xanh.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -392,7 +392,7 @@ p {
 }
 
 .layer1-2 {
-  background-image: url(./img/applewatch1.jpg);
+  background-image: url(../img/applewatch1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -403,7 +403,7 @@ p {
 }
 
 .layer1-3 {
-  background-image: url(./img/macos1.jpg);
+  background-image: url(../img/macos1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -414,7 +414,7 @@ p {
 }
 
 .layer2-1 {
-  background-image: url(./img/macos.jpg);
+  background-image: url(../img/macos.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -425,7 +425,7 @@ p {
 }
 
 .layer2-2 {
-  background-image: url(./img/applewatch2.jpg);
+  background-image: url(../img/applewatch2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -436,7 +436,7 @@ p {
 }
 
 .layer2-3 {
-  background-image: url(./img/ipod.jpg);
+  background-image: url(../img/ipod.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -498,7 +498,7 @@ p {
   display: inline-block;
   width: 138px;
   height: 53px;
-  background-image: url("./img/logowatch1.png");
+  background-image: url("../img/logowatch1.png");
   background-size: cover;
   background-position: center;
   margin-bottom: 20px;
@@ -508,7 +508,7 @@ p {
   display: inline-block;
   width: 138px;
   height: 53px;
-  background-image: url("./img/logowatch2.png");
+  background-image: url("../img/logowatch2.png");
   background-size: cover;
   background-position: center;
   margin-bottom: 20px;
