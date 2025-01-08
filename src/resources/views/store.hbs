@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="content">
+        <div class="gioithieu">
+            <div class="gioithieu-text">
+                Cửa Hàng.
+                <span style="color: #6e6e73">Cách tốt nhất để mua sản phẩm bạn thích.</span>
+            </div>
+            <div class="chuyengia">
+                <div class="chuyengia-img">
+                    <img
+                        src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-chat-specialist-icon-202304_AV4?wid=70&hei=70&fmt=jpeg&qlt=90&.v=1681798198638"
+                        alt=""
+                        style="width: 30px; border-radius: 50%" />
+                </div>
+                <div class="chuyengia-lienhe">
+                    Bạn cần trợ giúp mua sắm?
+                    <a href="#">Hỏi chuyên gia</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách sản phẩm -->
+        <ul class="list-sp">
+            {{#each products}}
+            <li class="sp-item">
+                <img src="{{this.image}}" alt="{{this.name}}" />
+                <a href="#" class="ten-sp">{{this.name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+
+        <div class="moinhat">
+            <div class="title">
+                <span class="colorBlack">Thế hệ mới nhất.</span> Xem ngay có gì mới.
+            </div>
+            <div class="slider">
+                <div class="btn-prev displayNone">&lt;</div>
+                <div class="slider-wrapper">
+                    <div class="danhsach-moinhat slider-main">
+                        {{#each newProducts}}
+                        <a href="#" class="moinhat-item slider-item">
+                            <img src="{{this.image}}" alt="{{this.name}}" />
+                            <div class="mota">
+                                <div class="mota-tensp">{{this.name}}</div>
+                                <div class="mota-dacbiet">{{this.description}}</div>
+                                <div class="mota-giaban">{{this.price}}</div>
+                            </div>
+                        </a>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="btn-next">&gt;</div>
+            </div>
+        </div>
+
+        <!-- Hỗ trợ -->
+        <div class="hotro">
+            <div class="title">
+                <span class="colorBlack">Hỗ trợ tại đây. </span> Ngay khi bạn muốn, mọi việc bạn cần.
+            </div>
+            <div class="hotro-lists">
+                {{#each support}}
+                <a href="#" class="hotro-item">
+                    <img src="{{this.image}}" alt="{{this.title}}" />
+                    <div class="mota">
+                        <div class="mota-dacbiet" style="color: black">
+                            {{this.description}}
+                        </div>
+                    </div>
+                </a>
+                {{/each}}
+            </div>
+        </div>
+
+        <!-- Trải nghiệm -->
+        <div class="trainghiem">
+            <div class="title">
+                <span class="colorBlack">Tất cả trải nghiệm Apple. </span> Làm được nhiều hơn với các sản phẩm và dịch vụ Apple.
+            </div>
+            <div class="trainghiem-lists">
+                {{#each experiences}}
+                <a href="#" class="trainghiem-item">
+                    <img src="{{this.image}}" alt="{{this.title}}" />
+                    <div class="mota">
+                        <div class="mota-dacbiet">{{this.description}}</div>
+                    </div>
+                </a>
+                {{/each}}
+            </div>
+        </div>
+
+        <!-- Cửa hàng đặc biệt -->
+        <div class="cuahang">
+            <div class="title">
+                <span class="colorBlack">Các cửa hàng đặc biệt.</span> Tiết kiệm độc quyền cho sinh viên, nhà giáo dục và doanh nghiệp.
+            </div>
+            <div class="cuahang-list">
+                {{#each specialStores}}
+                <a href="#" class="cuahang-item">
+                    <img src="{{this.image}}" alt="{{this.title}}" />
+                    <div class="mota">
+                        <div class="mota-tensp colorBlack">{{this.title}}</div>
+                        <div class="mota-dacbiet colorBlack">{{this.description}}</div>
+                    </div>
+                </a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="../css/store.css">
