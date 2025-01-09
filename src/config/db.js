@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 
-export const connectDB = async () => {
+export const connectDB = async (uri) => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/my_db');
+        await mongoose.connect(uri);
     } catch (error) {
         console.log(error);
     }
