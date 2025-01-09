@@ -18,7 +18,9 @@
   "homepage": "https://github.com/DangHuy04/_N06-PTTKPM_Nhom11#readme",
   "type": "module",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
     "mongoose": "^8.9.3"
   }
 }

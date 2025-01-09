@@ -1,9 +1,12 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-export const connectDB = async () => {
+const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/my_db');
+        await mongoose.connect('mongodb://127.0.0.1:27017/apple-store');
+        console.log("Kết nối cơ sở dữ liệu thành công");
     } catch (error) {
-        console.log(error);
+        console.log("Kết nối cơ sở dữ liệu thất bại: ",error.message);
     }
 };
+
+export default connectDB;
