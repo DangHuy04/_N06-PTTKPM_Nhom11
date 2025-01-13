@@ -41,13 +41,8 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 // Route trang chủ
 app.get('/', async (req, res) => {
     try {
-      // Lấy tất cả sản phẩm từ MongoDB
-      const products = await Product.find();
-     
-      // Gửi data vào view
-      res.render('home', { products, layout: false });
+      res.render('home');
     } catch (err) {
-      console.error('Error fetching products:', err);
       res.status(500).send('Server Error');
     }
 });
