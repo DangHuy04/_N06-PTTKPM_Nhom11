@@ -32,8 +32,7 @@ const hbs = create({
 app.use(cors({
     origin: "*"
 }));
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join('public')));
 // Set up Handlebars làm template engine
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
