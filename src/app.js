@@ -32,7 +32,7 @@ const hbs = create({
 app.use(cors({
     origin: "*"
 }));
-app.use(express.static(path.join('src')));
+app.use(express.static(path.join('public')));
 // Set up Handlebars làm template engine
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -46,6 +46,18 @@ app.get('/', async (req, res) => {
       res.status(500).send('Server Error');
     }
 });
+
+// Route login
+app.get('/login', async (req, res) => {
+  try {
+    
+    res.render('login', { layout: false });
+  } catch (err) {
+    console.error('Error fetching products:', err);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 app.listen(port, () => {
     console.log(`Website đang chạy tại http://localhost:${port}`);
