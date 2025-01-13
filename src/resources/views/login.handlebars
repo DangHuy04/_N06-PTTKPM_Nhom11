@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register - Apple Store</title>
+    <link rel="stylesheet" href="/css/login.css">
+    
+</head>
+<body>
+    <div class="container" id="login-container">
+        <!-- Login Form -->
+        <div class="header">
+            <h1>{{loginTitle}}</h1>
+        </div>
+        <div class="form">
+            <form id="login-form" action="{{loginAction}}" method="POST">
+                <label for="login-email">{{loginEmailLabel}}</label>
+                <input type="email" id="login-email" name="email" placeholder="{{loginEmailPlaceholder}}" required>
+                
+                <label for="login-password">{{loginPasswordLabel}}</label>
+                <input type="password" id="login-password" name="password" placeholder="{{loginPasswordPlaceholder}}" required>
+                
+                <button type="submit">{{loginButton}}</button>
+            </form>
+            <div class="toggle">
+                <p>{{loginToggleText}} <a href="#" onclick="toggleForms('register')">{{registerLinkText}}</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="register-container" style="display: none;">
+        <!-- Register Form -->
+        <div class="header">
+            <h1>{{registerTitle}}</h1>
+        </div>
+        <div class="form">
+            <form id="register-form" action="{{registerAction}}" method="POST">
+                <label for="register-name">{{registerNameLabel}}</label>
+                <input type="text" id="register-name" name="name" placeholder="{{registerNamePlaceholder}}" required>
+
+                <label for="register-email">{{registerEmailLabel}}</label>
+                <input type="email" id="register-email" name="email" placeholder="{{registerEmailPlaceholder}}" required>
+                
+                <label for="register-password">{{registerPasswordLabel}}</label>
+                <input type="password" id="register-password" name="password" placeholder="{{registerPasswordPlaceholder}}" required>
+
+                <label for="register-phonenumber">{{registerPhoneNumberLabel}}</label>
+                <input type="text" id="register-phonenumber" name="number" placeholder="{{registerPhoneNumberPlaceholder}}" required>
+                
+                <button type="submit">{{registerButton}}</button>
+            </form>
+            <div class="toggle">
+                <p>{{registerToggleText}} <a href="#" onclick="toggleForms('login')">{{loginLinkText}}</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/routes/login.js"></script>
+</body>
+</html>
