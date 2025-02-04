@@ -1,3 +1,8 @@
+/*
+import express from 'express';
+import { connectDB } from './config/db';
+*/
+
 const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
@@ -6,6 +11,9 @@ const app = express()
 const port = 3000
 //static file
 app.use(express.static(path.join(__dirname, 'public')))
+
+//Connect DB
+//connectDB('mongodb://localhost:27017/my_db');
 
 //HTTP logger
 app.use(morgan('combined'))
