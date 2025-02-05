@@ -2,9 +2,9 @@
   "name": "pttkpmnhom11",
   "version": "1.0.0",
   "description": "- Website cung cấp một nền tảng phân phối trực tiếp các mặt hàng chính hãng của Apple như Iphone, Ipad, Macbook, Airpods, Apple Watch và nhiều phụ kiện khác. Hệ thống với thao tác đơn giản, thân thiện giúp người dùng dễ dàng tìm kiếm, xem chi tiết sản phẩm và bao gồm cả chức năng thanh toán, đặt hàng. Website sẽ tối ưu hóa trải nghiệm mua sắm trực tuyến và đảm bảo tính an toàn khi giao dịch.\r - Website cũng tích hợp một số các chức năng quản lý sản phẩm và thống kê dành riêng cho quản trị viên, giúp việc vận hành và theo dõi trở nên thuận tiện.",
-  "main": "src\\index.js",
+  "main": "src\\app.js",
   "scripts": {
-    "start": "nodemon --inspect src\\index.js",
+    "start": "nodemon --inspect src\\app.js",
     "watch": "sass --watch src\\resources\\scss\\app.scss:src\\public\\css\\app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
