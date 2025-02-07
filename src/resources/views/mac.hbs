@@ -1,12 +1,58 @@
+{{!-- Navbar --}}
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center"> 
+    <div class="container">
+        <a class="navbar-brand" href="#">Tất cả</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="#">MacBook Pro M4</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">MacBook Air</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">iMac</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Mac Mini</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">MacBook Pro</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Mac Pro</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Mac Studio</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{{!-- Mac --}}
 <div class="container">
-    <h1>{{title}}</h1>
+    <h1>{{mac.title}}</h1>
     <div class="grid">
-        {{#each products}}
+        {{#each mac.products}}
         <div class="card">
+            <div class="badge discount">{{this.discount}}</div>
+            <div class="badge installment">{{this.installment}}</div>
             <img src="{{this.image}}" alt="{{this.name}}">
             <h2>{{this.name}}</h2>
             <p class="price">{{this.price}}</p>
+            <p class="old-price">{{this.oldPrice}}</p>
         </div>
         {{/each}}
     </div>
 </div>
+
+<div class="container info-section">
+    {{#each mac.infoSections}}
+    <div class="info-card">
+        <img src="{{this.img}}" alt="{{this.title}}">
+        <h2>{{this.title}}</h2>
+        <a href="{{this.link}}">{{this.linkText}}</a>
+    </div>
+    {{/each}}
+</div>
+
+<div class="fixed-buttons">
+    <a href="tel:+123456789" class="hotline">
+        <i class="bi bi-telephone"></i>
+    </a>
+    <a href="mailto:example@example.com" class="comment">
+        <i class="bi bi-chat-dots"></i>
+    </a>
+</div>
+
+<link rel="stylesheet" href="../css/mac.css">
