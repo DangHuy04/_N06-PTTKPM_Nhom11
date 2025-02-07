@@ -1,140 +1,64 @@
-   <div class="container">
-        <h1>{{title}}</h1>
-        <div class="grid">
-            {{#each products}}
-            <div class="card">
-                <div class="badge discount">{{this.discount}}</div>
-                <div class="badge installment">{{this.installment}}</div>
-                <img src="{{this.image}}" alt="{{this.name}}">
-                <h2>{{this.name}}</h2>
-                <p class="price">{{this.price}}</p>
-                <p class="old-price">{{this.oldPrice}}</p>
-            </div>
-            {{/each}}
+{{!-- iPhone --}}
+<div class="container">
+    <h1>{{iphone.title}}</h1>
+    <div class="grid">
+        {{#each iphone.products}}
+        <div class="card">
+            <div class="badge discount">{{this.discount}}</div>
+            <div class="badge installment">{{this.installment}}</div>
+            <img src="{{this.image}}" alt="{{this.name}}">
+            <h2>{{this.name}}</h2>
+            <p class="price">{{this.price}}</p>
+            <p class="old-price">{{this.oldPrice}}</p>
         </div>
-        <a href="#" class="button">Xem tất cả iPhone</a>
+        {{/each}}
     </div>
-    <div class="fixed-buttons">
-        <button>
-            <i class="fas fa-phone"></i>
-        </button>
-        <button>
-            <i class="fas fa-comment"></i>
-        </button>
-    </div>
+    <a href="#" class="button">Xem tất cả iPhone</a>
+</div>
 
-    <style>
-        body {
-            background-color: #f3f4f6;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 16px;
-        }
-        h1 {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 32px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-        .card {
-            background-color: #fff;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            margin-bottom: 16px;
-        }
-        .card h2 {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        .card p {
-            margin: 0;
-        }
-        .card .price {
-            color: #1d4ed8;
-            font-size: 1.125rem;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-        .card .old-price {
-            color: #6b7280;
-            text-decoration: line-through;
-        }
-        .badge {
-            position: absolute;
-            top: 0;
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: #fff;
-        }
-        .badge.discount {
-            left: 0;
-            background-color: #ef4444;
-            border-top-right-radius: 8px;
-            border-bottom-left-radius: 8px;
-        }
-        .badge.installment {
-            right: 0;
-            background-color: #bfdbfe;
-            color: #1d4ed8;
-            border-top-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-        }
-        .button {
-            display: block;
-            width: fit-content;
-            margin: 32px auto;
-            padding: 8px 16px;
-            background-color: #fff;
-            color: #1d4ed8;
-            border: 1px solid #1d4ed8;
-            border-radius: 8px;
-            text-align: center;
-            text-decoration: none;
-        }
-        .fixed-buttons {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .fixed-buttons button {
-            background-color: #fff;
-            padding: 12px;
-            border-radius: 50%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: none;
-            cursor: pointer;
-        }
-        .fixed-buttons button i {
-            color: #4b5563;
-        }
-        @media (max-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+{{!-- iPad --}}
+<div class="container">
+    <h1>{{ipad.title}}</h1>
+    <div class="grid">
+        {{#each ipad.products}}
+        <div class="card">
+            <div class="badge discount">{{this.discount}}</div>
+            <div class="badge installment">{{this.installment}}</div>
+            <img src="{{this.image}}" alt="{{this.name}}">
+            <h2>{{this.name}}</h2>
+            <p class="price">{{this.price}}</p>
+            <p class="old-price">{{this.oldPrice}}</p>
+        </div>
+        {{/each}}
+    </div>
+    <a href="#" class="button">Xem tất cả iPad</a>
+</div>
+
+{{!-- Mac --}}
+<div class="container">
+    <h1>{{mac.title}}</h1>
+    <div class="grid">
+        {{#each mac.products}}
+        <div class="card">
+            <div class="badge discount">{{this.discount}}</div>
+            <div class="badge installment">{{this.installment}}</div>
+            <img src="{{this.image}}" alt="{{this.name}}">
+            <h2>{{this.name}}</h2>
+            <p class="price">{{this.price}}</p>
+            <p class="old-price">{{this.oldPrice}}</p>
+        </div>
+        {{/each}}
+    </div>
+    <a href="#" class="button">Xem tất cả Mac</a>
+</div>
+<div class="fixed-buttons">
+  <a href="tel:+123456789" class="hotline">
+    <i class="bi bi-telephone"></i>
+  </a>
+  <a href="mailto:example@example.com" class="comment">
+    <i class="bi bi-chat-dots"></i>
+  </a>
+</div>
+
+
+<link rel="stylesheet" href="../css/home.css">
