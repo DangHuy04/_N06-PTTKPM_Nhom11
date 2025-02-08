@@ -10,7 +10,7 @@ class homeController {
                 "../img/banner_home_6.png",
                 "../img/banner_home_7.png",
             ],
-            // Dữ liệu riêng cho từng danh mục
+            series: [ "iPhone", "iPad", "Mac", "Watch", "Âm thanh", "Phụ kiện", "Máy cũ", "Dịch vụ" , "Tin tức"],  
             iphone: {
                 title: "iPhone",
                 products: [

@@ -10,6 +10,7 @@ class IpadController {
                 "../img/banner_home_6.png",
                 "../img/banner_home_7.png",
             ],
+            series: [ "iPad 10", "iPad Air M2", "iPad Pro M4", "iPad Mini", "iPad 9", "iPad Pro M1", "Phụ Kiện iPad" ],
             ipad: {
                 title: "iPad",
                 products: [
@@ -54,6 +55,12 @@ class IpadController {
                         title: 'Phụ kiện iPad thường mua kèm',
                         link: '/accessories',
                         linkText: 'Tìm phụ kiện ›'
+                    }
+                ],
+                aboutSections: [
+                    {
+                        title: 'bla bla',
+                        content: 'ble ble'
                     }
                 ]
             },

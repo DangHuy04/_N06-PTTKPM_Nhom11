@@ -166,6 +166,41 @@ h1 {
   margin-top: 5px;
 }
 
+.about-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.about-card {
+  width: 100%;
+  max-width: 1200px;
+  background: white;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-card h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.about-card h2 {
+  font-size: 16px;
+  font-weight: normal;
+  color: #333;
+  line-height: 1.6;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    padding: 20px;
+  }
+}
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
