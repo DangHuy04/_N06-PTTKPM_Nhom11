@@ -102,7 +102,7 @@ class MacController {
                             id: 4,
                             name: "Huệ Trần",
                             rating: 5,
-                            comment: "đt sẵn hàng quá",
+                            comment: "mac sẵn hàng quá",
                             createdAt: "2023-06-01",
                             image: null
                         },
@@ -126,7 +126,7 @@ class MacController {
                             id: 7,
                             name: "Uyên",
                             rating: 5,
-                            comment: "Sản phẩm các dòng iphone còn hàng nhiều",
+                            comment: "Sản phẩm các dòng mac còn hàng nhiều",
                             createdAt: "2023-04-24",
                             image: null
                         }
