@@ -1,0 +1,150 @@
+{{!-- iPhone --}}
+<div class="container text-center">
+    <h1>{{iphone.title}}</h1>
+    <div class="grid">
+        {{#each iphone.products}}
+        <div class="card">
+            <div class="badge discount">{{this.discount}}</div>
+            <div class="badge installment">{{this.installment}}</div>
+            <img src="{{this.image}}" alt="{{this.name}}">
+            <h2>{{this.name}}</h2>
+            <p class="price">{{this.price}}</p>
+            <p class="old-price">{{this.oldPrice}}</p>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<div class="container info-section">
+    {{#each iphone.infoSections}}
+    <div class="info-card">
+        <img src="{{this.img}}" alt="{{this.title}}">
+        <h2>{{this.title}}</h2>
+        <a href="{{this.link}}">{{this.linkText}}</a>
+    </div>
+    {{/each}}
+</div>
+
+<div class="container about-section">
+    {{#each iphone.aboutSections}}
+    <div class="about-card">
+        <h1>{{this.title}}</h1>
+        <h2>{{this.content}}</h2>
+        <h1>{{this.title}}</h1>
+        <h2>{{this.content}}</h2>
+    </div>
+    {{/each}}
+</div>
+
+{{!-- iPhone Reviews Section --}}
+<div class="container reviews-section">
+    <h1>Đánh giá danh mục</h1>
+    <div class="reviews-grid">
+        {{!-- Left Column --}}
+        <div class="reviews-summary">
+            <div class="rating-card">
+                <div class="rating-average">
+                    <span class="rating-number">{{iphone.reviews.averageRating}}</span>
+                    <span class="total-reviews">{{iphone.reviews.totalReviews}} đánh giá</span>
+                </div>
+
+                <div class="rating-bars">
+                    {{#each iphone.reviews.ratingCounts}}
+                    <div class="rating-bar">
+                        <span class="star-count">{{this.stars}}</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {{this.percentage}}%"></div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+                <div class="review-form">
+                    <h2>Viết đánh giá của riêng bạn</h2>
+                    <form action="/iphone/reviews" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="productCategory" value="iphone">
+
+                        <div class="rating-select">
+                            <span>Chất lượng*:</span>
+                            <div class="stars">
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star5" name="rating" value="5" checked>
+                                <label for="star5"><i class="bi bi-star-fill"></i></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h2>Tên của bạn:</h2>
+                            <input type="text" name="name" placeholder="Tên của bạn" required>
+                        </div>
+
+                        <div class="form-group">
+                            <h2>Đánh giá:</h2>
+                            <textarea name="comment" placeholder="Đánh giá danh mục" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="upload-btn">
+                                <i class="bi bi-upload"></i> Upload image
+                                <input type="file" name="image" accept="image/*" hidden>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Gửi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Right Column --}}
+        <div class="reviews-list">
+            {{#each iphone.reviews.list}}
+            <div class="review-item">
+                <div class="review-avatar">
+                    {{#if this.image}}
+                    <img src="{{this.image}}" alt="{{this.name}}">
+                    {{else}}
+                    <i class="bi bi-person-circle"></i>
+                    {{/if}}
+                </div>
+                <div class="review-content">
+                    <div class="review-header">
+                        <h3>{{this.name}} <span class="review-date">{{this.createdAt}}</span></h3>
+                    </div>
+                    <div class="review-rating">
+                        <div class="stars">
+                            {{#times this.rating}}
+                            <i class="bi bi-star-fill"></i>
+                            {{/times}}
+                        </div>
+                        <p>{{this.comment}}</p>
+                    </div>
+                    {{#if this.image}}
+                    <div class="review-image">
+                        <img src="{{this.image}}" alt="Review image">
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="fixed-buttons">
+    <a href="tel:+123456789" class="hotline">
+        <i class="bi bi-telephone"></i>
+    </a>
+    <a href="mailto:example@example.com" class="comment">
+        <i class="bi bi-chat-dots"></i>
+    </a>
+</div>
+
+<link rel="stylesheet" href="../css/iphone.css">

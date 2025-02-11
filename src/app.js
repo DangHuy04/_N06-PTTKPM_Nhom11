@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import { create } from 'express-handlebars';
 import Product from './model/Products.js';
+import router from './routes/index.js'
 
 const app = express()
 const port = 3000
@@ -37,15 +38,13 @@ app.use(express.static(path.join('public')));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'resources', 'views'));
-  
-// Route trang chủ
-app.get('/', async (req, res) => {
-    try {
-      res.render('home');
-    } catch (err) {
-      res.status(500).send('Server Error');
-    }
+
+app.listen(port, () => {
+    console.log(`Website đang chạy tại http://localhost:${port} 🚀`);
 });
+
+// Route trang chủ
+router(app);
 
 // Route login
 app.get('/login', async (req, res) => {
@@ -56,9 +55,4 @@ app.get('/login', async (req, res) => {
     console.error('Error fetching products:', err);
     res.status(500).send('Server Error');
   }
-});
-
-
-app.listen(port, () => {
-    console.log(`Website đang chạy tại http://localhost:${port}`);
 });
