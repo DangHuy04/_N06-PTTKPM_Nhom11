@@ -4,8 +4,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import { create } from 'express-handlebars';
-import Product from './model/Products.js';
-import router from './routes/index.js'
+import Handlebars from 'express-handlebars';
+import homeRoutes from "./routes/homeRoutes.js";
+
 
 const app = express()
 const port = 3000
@@ -35,7 +36,22 @@ app.use(cors({
 }));
 app.use(express.static(path.join('public')));
 // Set up Handlebars làm template engine
-app.engine('handlebars', hbs.engine);
+app.engine(
+    'handlebars',
+    Handlebars.engine({
+        extname: '.handlebars',
+        helpers: {
+            times: function (n, block) {
+                let accum = '';
+                for (let i = 0; i < n; ++i) {
+                    accum += block.fn(i);
+                }
+                return accum;
+            }
+        }
+    })
+);
+
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
@@ -43,8 +59,7 @@ app.listen(port, () => {
     console.log(`Website đang chạy tại http://localhost:${port} 🚀`);
 });
 
-// Route trang chủ
-router(app);
+app.use("/", homeRoutes);
 
 // Route login
 app.get('/login', async (req, res) => {
@@ -56,3 +71,5 @@ app.get('/login', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+
