@@ -75,18 +75,19 @@
         <div class="subnav1">
             <div class="subnav11">
                 {{#if user}}
-                    <div class="user-menu">
-                        <span class="user-name">{{user.username}}</span>
-                        <img src="../img/login_icon" class="user-icon" id="userIcon" alt="User Icon">
-                        <div class="dropdown-menu" id="dropdownMenu" style="display:none;">
-                            <a href="/profile">Profile</a>
-                            <a href="/logout">Logout</a>
-                        </div>
+                <div class="user-menu">
+                    <span class="user-name">{{user.username}}</span>
+                    <img src="../img/login_icon" class="user-icon" id="userIcon" alt="User Icon">
+                    <div class="dropdown-menu" id="dropdownMenu" style="display:none;">
+                        <a href="/profile">Profile</a>
+                        <a href="/logout">Logout</a>
                     </div>
+                </div>
                 {{else}}
-                    <!-- Nếu chưa đăng nhập, hiển thị nút đăng nhập và đăng ký -->
-                    <button onclick="window.location.href='/'" class="button">Đăng nhập</button>
-                    <button onclick="window.location.href='/register'" class="button">Đăng ký</button>
+                <div class="auth-buttons">
+                    <button onclick="window.location.href='/'" class="auth-btn login-btn">Đăng nhập</button>
+                    <button onclick="window.location.href='/register'" class="auth-btn signup-btn">Đăng ký</button>
+                </div>
                 {{/if}}
             </div>
         </div>
@@ -95,25 +96,25 @@
 </div>
 
 <script>
-        document.getElementById('userIcon').addEventListener('click', function () {
-            var dropdownMenu = document.getElementById('dropdownMenu');
-            if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
-                dropdownMenu.style.display = 'block';
-            } else {
-                dropdownMenu.style.display = 'none';
-            }
-        });
+    document.getElementById('userIcon').addEventListener('click', function () {
+        var dropdownMenu = document.getElementById('dropdownMenu');
+        if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+            dropdownMenu.style.display = 'block';
+        } else {
+            dropdownMenu.style.display = 'none';
+        }
+    });
 
-        // Đóng menu khi nhấp ra ngoài
-        window.onclick = function(event) {
-            if (!event.target.matches('.user-icon')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.style.display === 'block') {
-                        openDropdown.style.display = 'none';
-                    }
+    // Đóng menu khi nhấp ra ngoài
+    window.onclick = function (event) {
+        if (!event.target.matches('.user-icon')) {
+            var dropdowns = document.getElementsByClassName("dropdown-menu");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
                 }
             }
         }
-    </script>
+    }
+</script>

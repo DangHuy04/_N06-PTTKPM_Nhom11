@@ -33,7 +33,7 @@ h1 {
 .card img {
   width: 100%;
   height: 240px;
-  object-fit: cover;
+  object-fit: contain;
   margin-bottom: 16px;
 }
 
