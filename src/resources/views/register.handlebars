@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - Apple Store</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Đăng Ký</h1>
+        </div>
+        <div class="form">
+            <form id="register-form" action="/register" method="POST">
+                <label for="register-name">Họ và Tên</label>
+                <input type="text" id="register-name" name="name" placeholder="Nhập họ và tên của bạn" required>
+
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" name="email" placeholder="Nhập email của bạn" required>
+                
+                <label for="register-password">Mật khẩu</label>
+                <input type="password" id="register-password" name="password" placeholder="Nhập mật khẩu của bạn" required>
+
+                <label for="register-phonenumber">Số Điện Thoại</label>
+                <input type="tel" id="register-phonenumber" name="phone" placeholder="Nhập số điện thoại của bạn" required>
+                
+                <button type="submit">Đăng Ký</button>
+            </form>
+            <div class="toggle">
+                <p>Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="/js/register.js"></script>
+</body>
+</html>

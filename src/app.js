@@ -5,8 +5,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import { create } from 'express-handlebars';
 import Handlebars from 'express-handlebars';
-import homeRoutes from "./routes/homeRoutes.js";
-
+import route from './routes/index.js';
 
 const app = express()
 const port = 3000
@@ -52,6 +51,10 @@ app.engine(
     })
 );
 
+// Lấy Data được gửi lên từ input phía client
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
@@ -59,13 +62,25 @@ app.listen(port, () => {
     console.log(`Website đang chạy tại http://localhost:${port} 🚀`);
 });
 
-app.use("/", homeRoutes);
+// Route các trang chính
+route(app);
 
-// Route login
+// Route đăng nhập
 app.get('/login', async (req, res) => {
   try {
     
     res.render('login', { layout: false });
+  } catch (err) {
+    console.error('Error fetching products:', err);
+    res.status(500).send('Server Error');
+  }
+});
+
+// Route đăng kí
+app.get('/register', async (req, res) => {
+  try {
+    
+    res.render('register', { layout: false });
   } catch (err) {
     console.error('Error fetching products:', err);
     res.status(500).send('Server Error');
