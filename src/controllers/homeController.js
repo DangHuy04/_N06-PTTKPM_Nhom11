@@ -14,6 +14,7 @@ class homeController {
             const formatProducts = (products) =>
                 products.map(product => ({
                     name: product.name,
+                    productId: product.productId,
                     price: product.price.toLocaleString() + "đ",
                     oldPrice: product.oldPrice ? product.oldPrice.toLocaleString() + "đ" : "",
                     discount: product.discount || "",

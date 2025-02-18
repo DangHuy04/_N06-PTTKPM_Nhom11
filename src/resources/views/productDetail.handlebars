@@ -1,0 +1,244 @@
+{{!-- productDetail.hbs --}}
+<div class="container product-detail">
+    <div class="product-grid">
+        <div class="product-image">
+            <img src="{{image}}" alt="{{name}}">
+        </div>
+
+        <div class="product-info">
+            <h1>{{name}}</h1>
+            <p class="price">{{price}}</p>
+
+            {{#if stock}}
+            <div class="stock in-stock">Còn hàng</div>
+            {{else}}
+            <div class="stock out-of-stock">Hết hàng</div>
+            {{/if}}
+
+            <div class="specs">
+                <h2>Thông số kỹ thuật</h2>
+                <ul>
+                    {{#if storage}}
+                    <li>
+                        <span class="spec-label">Bộ nhớ:</span>
+                        <span class="spec-value">{{storage}}</span>
+                    </li>
+                    {{/if}}
+
+                    {{#if color}}
+                    <li>
+                        <span class="spec-label">Màu sắc:</span>
+                        <span class="spec-value">{{color}}</span>
+                    </li>
+                    {{/if}}
+
+                    {{#if camera}}
+                    <li>
+                        <span class="spec-label">Camera:</span>
+                        <span class="spec-value">{{camera}}</span>
+                    </li>
+                    {{/if}}
+
+                    {{#if battery}}
+                    <li>
+                        <span class="spec-label">Pin:</span>
+                        <span class="spec-value">{{battery}}</span>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+
+            <div class="description">
+                <h2>Mô tả sản phẩm</h2>
+                <p>{{description}}</p>
+            </div>
+
+            <div class="actions">
+                <button class="button primary">Mua ngay</button>
+                <button class="button secondary">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-buttons">
+    <a href="tel:+123456789" class="hotline">
+        <i class="bi bi-telephone"></i>
+    </a>
+    <a href="mailto:example@example.com" class="comment">
+        <i class="bi bi-chat-dots"></i>
+    </a>
+</div>
+
+<style>
+    /* productDetail.css */
+    body {
+        background-color: #ffffff;
+        color: #333;
+    }
+
+    .product-detail {
+        background: white;
+        padding: 2rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        border-radius: 12px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .product-info h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .price {
+        font-size: 1.5rem;
+        color: #e60012;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .stock {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+
+    .in-stock {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+    }
+
+    .out-of-stock {
+        background-color: #ffebee;
+        color: #c62828;
+    }
+
+    .specs {
+        margin: 2rem 0;
+    }
+
+    .specs h2,
+    .description h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .specs ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .specs li {
+        display: flex;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .spec-label {
+        flex: 0 0 120px;
+        color: #666;
+    }
+
+    .description {
+        margin: 2rem 0;
+    }
+
+    .description p {
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .button {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .button.primary {
+        background-color: #e60012;
+        color: white;
+    }
+
+    .button.primary:hover {
+        background-color: #cc0010;
+    }
+
+    .button.secondary {
+        background-color: #f5f5f5;
+        color: #333;
+        border: 1px solid #ddd;
+    }
+
+    .button.secondary:hover {
+        background-color: #eee;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .actions {
+            flex-direction: column;
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
+
+    /* Keep your existing fixed-buttons styles */
+    .fixed-buttons {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hotline,
+    .comment {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+
+    .hotline {
+        background-color: #e60012;
+    }
+
+    .comment {
+        background-color: #007bff;
+    }
+</style>
