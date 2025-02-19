@@ -9,14 +9,21 @@ const productSchema = new mongoose.Schema({
     category: { type: String, required: true },
     stock: { type: Number, required: true, default: 0 },
     specs: {
+        // iPhone specs
         storage: [String],
         color: [String],
         camera: String,
-        battery: String
+        battery: String,
+        
+        // iPad và Mac specs
+        chip: String,
+        ram: String,
+        screen: String,
+        weight: String
     },
     discount: String,
     installment: String,
-    oldPrice: Number
+    oldPrice: Number,
 });
 
 const Product = mongoose.model('Product', productSchema);
