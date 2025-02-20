@@ -149,7 +149,8 @@ img {
   gap: 8px;
   position: absolute;
   right: 23vw;
-  background-color: #000000;
+  background-color: #ffffff;
+  border-radius: 8px;
 }
 
 .auth-buttons {
@@ -161,35 +162,39 @@ img {
 
 .auth-btn {
   width: 100%;
-  font-size: 12px;
+  font-size: 15px;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: "SF Pro Display", sans-serif;
   text-align: left;
+  border: none;
 }
 
 .login-btn {
+  display: inline-block;
   background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #D2D2D7;
+  color: rgba(0, 0, 0, 0.8);
+  padding-bottom: 8px;
 }
 
 .login-btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #1d4ed8;
 }
 
 .signup-btn {
   background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #D2D2D7;
+  color: rgba(0, 0, 0, 0.8);
+  padding-bottom: 8px;
 }
 
 .signup-btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #1d4ed8;
 }
 
 /* footer css */
