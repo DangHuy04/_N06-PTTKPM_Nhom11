@@ -55,7 +55,6 @@ html {
   letter-spacing: -0.12px;
   line-height: 12px;
   text-align: left;
-  padding-top: 5px;
   margin: 0 10px;
 }
 
@@ -92,12 +91,13 @@ img {
   -webkit-backdrop-filter: blur(20px);
   color: #414141 !important;
   justify-content: center;
+  align-items: center;
   display: flex;
   position: fixed;
   top: 0px;
   width: 100%;
   z-index: 9999;
-  max-height: 44px;
+  max-height: 3.5em;
   flex-wrap: nowrap;
 }
 
@@ -113,7 +113,7 @@ img {
 .subnav1 {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 80%;
   right: 0;
   width: auto;
   z-index: 9999;
