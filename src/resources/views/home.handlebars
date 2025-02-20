@@ -1,3 +1,26 @@
+{{!-- Slider Banners Section --}}
+<section class="container mt-4">
+    <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {{#each sliderBanners}}
+            <div class="carousel-item {{#if @first}}active{{/if}}">
+                <div class="carousel-grid">
+                    {{#each this}}
+                    <img src="{{this}}" alt="Slider Banner">
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
 {{!-- iPhone --}}
 <div class="container">
     <h1>{{iphone.title}}</h1>
@@ -85,4 +108,13 @@
   </a>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Khởi tạo carousel
+    var carousel = new bootstrap.Carousel(document.querySelector('#carouselExample1'), {
+        interval: 3000, // Thời gian chuyển slide (3 giây)
+        wrap: true // Cho phép quay vòng
+    });
+});
+</script>
 <link rel="stylesheet" href="../css/home.css">

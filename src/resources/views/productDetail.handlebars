@@ -104,7 +104,9 @@
 
 {{!-- Related Products Section --}}
 <div class="container">
-    <b><h1>Sản phẩm tương tự</h1></b>
+    <b>
+        <h1>Sản phẩm tương tự</h1>
+    </b>
     <div class="grid">
         {{#each products}}
         <a href="/product/{{productId}}" class="card-link">
@@ -146,24 +148,24 @@
             </div>
         </div>
 
-        {{!-- Thông số Tab
+        {{!-- Thông số Tab --}}
         <div id="specs" class="tab-pane">
-            <div class="specs-content">
+            {{!-- <div class="specs-content">
                 <ul>
                     {{#if (eq specsDisplay.type 'iphone')}}
-                        {{> iphoneSpecs specsDisplay=specsDisplay}}
+                    {{> iphoneSpecs specsDisplay=specsDisplay}}
                     {{else}}
-                        {{> otherSpecs specsDisplay=specsDisplay}}
+                    {{> otherSpecs specsDisplay=specsDisplay}}
                     {{/if}}
                 </ul>
-            </div>
-        </div> --}}
+            </div> --}}
+        </div>
 
         {{!-- Đánh giá Tab --}}
         <div id="reviews" class="tab-pane">
-            <div class="reviews-section">
+            {{!-- <div class="reviews-section">
                 {{> productReviews reviews=reviews}}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -205,10 +207,7 @@
 
     /* Product Detail Styles */
     .product-detail {
-        background: white;
-        padding: 2rem 1rem;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
+        padding: 1rem 1rem;
         margin-bottom: 2rem;
     }
 
@@ -216,6 +215,12 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
+    }
+
+    .product-image {
+        width: 30vw;
+        height: 40vh;
+        object-fit: cover;
     }
 
     /* Product Grid (Similar to Home) */
@@ -246,15 +251,23 @@
 
     .card img {
         width: 100%;
-        height: auto;
-        object-fit: cover;
+        height: 40vh;
+        object-fit: contain;
         border-radius: 4px;
+        margin-bottom: 16px;
     }
 
     .card h2 {
-        font-size: 1rem;
-        margin: 10px 0;
-        color: var(--text-color);
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .card .price {
+        color: #1d4ed8;
+        font-size: 1.125rem;
+        font-weight: bold;
+        margin-bottom: 4px;
     }
 
     /* Stock Status */
@@ -395,91 +408,90 @@
     }
 
     /* Tabs Styles */
-.tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 20px;
-}
+    .tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 20px;
+    }
 
-.tab-button {
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 16px;
-    position: relative;
-}
+    .tab-button {
+        padding: 10px 20px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 16px;
+        position: relative;
+    }
 
-.tab-button.active {
-    color: var(--primary-color);
-}
+    .tab-button.active {
+        color: var(--primary-color);
+    }
 
-.tab-button.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
-}
+    .tab-button.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary-color);
+    }
 
-.tab-content {
-    padding: 20px 0;
-}
+    .tab-content {
+        padding: 20px 0;
+    }
 
-.tab-pane {
-    display: none;
-}
+    .tab-pane {
+        display: none;
+    }
 
-.tab-pane.active {
-    display: block;
-}
+    .tab-pane.active {
+        display: block;
+    }
 
-/* Description Tab Styles */
-.description-content img {
-    width: 100%;
-    margin-bottom: 20px;
-}
+    /* Description Tab Styles */
+    .description-content img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 
-/* Specs Tab Styles */
-.specs-content ul {
-    list-style: none;
-    padding: 0;
-}
+    /* Specs Tab Styles */
+    .specs-content ul {
+        list-style: none;
+        padding: 0;
+    }
 
-.specs-content li {
-    display: flex;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
-}
+    .specs-content li {
+        display: flex;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
 
-/* Reviews Tab Styles */
-.reviews-section {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
+    /* Reviews Tab Styles */
+    .reviews-section {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 </style>
 
 <script>
     // Thêm vào cuối file hoặc trong một file JS riêng
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabPanes = document.querySelectorAll('.tab-pane');
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanes = document.querySelectorAll('.tab-pane');
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons and panes
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanes.forEach(pane => pane.classList.remove('active'));
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
 
-            // Add active class to clicked button and corresponding pane
-            button.classList.add('active');
-            const tabId = button.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
+                // Add active class to clicked button and corresponding pane
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
         });
     });
-});
 
 </script>
