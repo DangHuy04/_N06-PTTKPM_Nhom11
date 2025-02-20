@@ -87,7 +87,7 @@ img {
 
 /* header css */
 .header {
-  background-color: rgba(18, 18, 19, 0.8);
+  background-color: #000000;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   color: #414141 !important;
@@ -148,8 +148,8 @@ img {
   margin: 0;
   gap: 8px;
   position: absolute;
-  right: 75px;
-  background-color: rgba(18, 18, 19, 0.8);
+  right: 23vw;
+  background-color: #000000;
 }
 
 .auth-buttons {
