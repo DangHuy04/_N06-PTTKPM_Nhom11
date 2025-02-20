@@ -36,19 +36,20 @@ app.use(cors({
 app.use(express.static(path.join('public')));
 // Set up Handlebars làm template engine
 app.engine(
-    'handlebars',
-    Handlebars.engine({
-        extname: '.handlebars',
-        helpers: {
-            times: function (n, block) {
-                let accum = '';
-                for (let i = 0; i < n; ++i) {
-                    accum += block.fn(i);
-                }
-                return accum;
-            }
-        }
-    })
+  "handlebars",
+  Handlebars.engine({
+      layoutsDir: path.join(__dirname, 'resources', 'views', 'layouts'),
+      extname: ".handlebars",
+      helpers: {
+          times: function (n, block) {
+              let accum = "";
+              for (let i = 0; i < n; ++i) {
+                  accum += block.fn(i);
+              }
+              return accum;
+          }
+      }
+  })
 );
 
 // Lấy Data được gửi lên từ input phía client

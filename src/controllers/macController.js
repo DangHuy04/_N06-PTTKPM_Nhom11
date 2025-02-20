@@ -1,6 +1,7 @@
 class macController {
     index(req, res) {
         res.render('mac', {
+            layout: "category",
             banners: [
                 "../img/banner_home_1.png",
                 "../img/banner_home_2.png",
@@ -10,7 +11,7 @@ class macController {
                 "../img/banner_home_6.png",
                 "../img/banner_home_7.png",
             ],
-            series: ["MacBook Pro M4", "MacBook Air", "iMac", "Mac Mini", "MacBook Pro", "Mac Pro", "Mac Studio"],
+            series: ["Tất cả" , "MacBook Pro M4", "MacBook Air", "iMac", "Mac Mini", "MacBook Pro", "Mac Pro", "Mac Studio"],
             mac: {
                 title: "Mac",
                 products: [

@@ -23,6 +23,7 @@ class homeController {
 
             // Render ra giao diện
             res.render("home", {
+                layout: "home",
                 banners: [
                     "../img/banner_home_1.png",
                     "../img/banner_home_2.png",

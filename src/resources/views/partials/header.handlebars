@@ -1,5 +1,5 @@
 <div class="phuWeb"></div>
-<div class="header">
+<div class="header" id="header">
     <a class="linkz" href="/" style="
             position:relative;
             bottom:5px;">
@@ -93,9 +93,53 @@
         </div>
     </div>
 </div>
+<div class="search-box" id="searchBox">
+    <form action="/search" id="search-form">
+        <input type="text" class="search-box-input" name="query" id="searchterms" placeholder="Tìm kiếm">
+    </form>
+</div>
+<div id="overlay" class="overlay"></div>
 </div>
 
 <script>
+    document.getElementById("timkiem").addEventListener("click", function(event) {
+    event.preventDefault(); // Ngăn chặn load lại trang khi click vào <a>
+
+    let menu = document.getElementById("header");
+    let searchBox = document.getElementById("searchBox");
+
+    menu.style.display = "none"; // Ẩn menu
+    searchBox.style.display = "flex"; // Hiện ô tìm kiếm
+    overlay.style.display = "block";
+
+    // Xử lý khi click ra ngoài
+    document.addEventListener("click", function hideSearchBox(e) {
+        if (!searchBox.contains(e.target) && !event.target.contains(e.target)) {
+            menu.style.display = "flex"; // Hiện menu lại
+            searchBox.style.display = "none"; // Ẩn ô tìm kiếm
+            overlay.style.display = "none";
+            document.removeEventListener("click", hideSearchBox); // Xóa sự kiện để tránh lặp vô hạn
+        }
+    });
+
+    });
+
+    // Xử lý thanh tìm kiếm
+    document.getElementById("search-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn form gửi đi nếu không hợp lệ
+
+        let searchContent = document.getElementById("searchterms").value.trim();
+        let words = searchContent.split(""); 
+        console.log("Word length :",words.length);
+        if (words.length < 3) {
+            alert("Độ dài tối thiểu của từ khoá tìm kiếm là 3 kí tự");
+            return;
+        }
+
+        this.submit(); // Nếu hợp lệ, gửi form đi
+    });
+
+
     document.getElementById('userIcon').addEventListener('click', function () {
         var dropdownMenu = document.getElementById('dropdownMenu');
         if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
