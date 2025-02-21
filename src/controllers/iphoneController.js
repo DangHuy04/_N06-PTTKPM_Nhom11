@@ -2,6 +2,7 @@ class iphoneController {
     index(req, res) {
         res.render('iphone', {
             layout: "category",
+            title: "iPhone",
             banners: [
                 "../img/banner_home_1.png",
                 "../img/banner_home_2.png",
@@ -13,7 +14,6 @@ class iphoneController {
             ],
             series: ["Tất cả" , "iPhone 16 series", "iPhone 15 series", "iPhone 14 series", "iPhone 13 series", "iPhone 12 series", "iPhone 11 series", "iPhone SE"],
             iphone: {
-                title: "iPhone",
                 products: [
                     {
                         name: "iPhone 16 128GB",

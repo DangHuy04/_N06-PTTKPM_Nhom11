@@ -49,7 +49,7 @@ html {
 }
 
 .linkz {
-  font-size: 12px;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.8) !important;
   fill: rgba(255, 255, 255, 0.8) !important;
   letter-spacing: -0.12px;
@@ -86,10 +86,10 @@ img {
 
 /* header css */
 .header {
-  background-color: #000000;
+  background-color: #515154;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  color: #414141 !important;
+  color: #d2d2d7 !important;
   justify-content: center;
   align-items: center;
   display: flex;

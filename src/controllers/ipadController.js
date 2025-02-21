@@ -2,6 +2,7 @@ class ipadController {
     index(req, res) {
         res.render('ipad', {
             layout: "category",
+            title: "iPad",
             banners: [
                 "../img/banner_home_1.png",
                 "../img/banner_home_2.png",
@@ -13,7 +14,6 @@ class ipadController {
             ],
             series: ["Tất cả" , "iPad 10", "iPad Air M2", "iPad Pro M4", "iPad Mini", "iPad 9", "iPad Pro M1", "Phụ Kiện iPad"],
             ipad: {
-                title: "iPad",
                 products: [
                     {
                         name: "iPad Pro 2024",
