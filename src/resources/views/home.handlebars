@@ -99,6 +99,10 @@
     <a href="/mac" class="button">Xem tất cả Mac</a>
 </div>
 
+<div class="footer-banner">
+    <img src="{{banner}}" class="d-block w-100" alt="Banner">
+</div>
+
 <div class="fixed-buttons">
   <a href="tel:+123456789" class="hotline">
     <i class="bi bi-telephone"></i>
@@ -111,7 +115,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Khởi tạo carousel
-    var carousel = new bootstrap.Carousel(document.querySelector('#carouselExample1'), {
+    var carousel = new bootstrap.Carousel(document.querySelector('#carouselExample1','#carouselExample'), {
         interval: 3000, // Thời gian chuyển slide (3 giây)
         wrap: true // Cho phép quay vòng
     });
