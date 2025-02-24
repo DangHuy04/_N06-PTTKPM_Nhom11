@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import { create } from 'express-handlebars';
-import Handlebars from 'express-handlebars';
 import route from './routes/index.js';
 
 const app = express()
@@ -15,7 +14,6 @@ const __dirname = path.dirname(__filename);
 // Kết nối MongoDB
 connectDB();
 
-// Tạo một instance của Handlebars với `create()`
 // Tạo một instance của Handlebars với `create()`
 const hbs = create({
   extname: '.handlebars',
@@ -37,41 +35,36 @@ const hbs = create({
       return accum;
     }
   },
+  eq: function (v1, v2) {
+    return v1 === v2;
+  },
+  times: function (n, block) {
+    let accum = '';
+    for (let i = 0; i < n; ++i) {
+      accum += block.fn(i);
+    }
+    return accum;
+  },
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
   }
 });
+
+// Set up Handlebars làm template engine
 app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // Cấu hình Express để phục vụ các file tĩnh từ thư mục 'public'
 app.use(cors({
   origin: "*"
 }));
 app.use(express.static(path.join('public')));
-// Set up Handlebars làm template engine
-app.engine(
-  "handlebars",
-  Handlebars.engine({
-      layoutsDir: path.join(__dirname, 'resources', 'views', 'layouts'),
-      extname: ".handlebars",
-      helpers: {
-          times: function (n, block) {
-              let accum = "";
-              for (let i = 0; i < n; ++i) {
-                  accum += block.fn(i);
-              }
-              return accum;
-          }
-      }
-  })
-);
 
 // Lấy Data được gửi lên từ input phía client
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 app.listen(port, () => {

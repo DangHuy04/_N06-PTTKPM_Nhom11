@@ -30,7 +30,7 @@ class macController {
                     "../img/banner_home_6.png",
                     "../img/banner_home_7.png",
                 ],
-                series: ["MacBook Air", "MacBook Pro", "iMac", "Mac mini", "Mac Studio", "Mac Pro"],
+                series: ["Tất cả", "MacBook Air", "MacBook Pro", "iMac", "Mac mini", "Mac Studio", "Mac Pro"],
                 mac: {
                     title: "Mac",
                     products: formatProducts(macs),

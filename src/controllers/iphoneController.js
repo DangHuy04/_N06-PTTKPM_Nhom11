@@ -30,7 +30,7 @@ class iphoneController {
                     "../img/banner_home_6.png",
                     "../img/banner_home_7.png",
                 ],
-                series: ["iPhone 16 series", "iPhone 15 series", "iPhone 14 series", "iPhone 13 series", "iPhone 12 series", "iPhone 11 series", "iPhone SE"],
+                series: ["Tất cả", "iPhone 16 series", "iPhone 15 series", "iPhone 14 series", "iPhone 13 series", "iPhone 12 series", "iPhone 11 series", "iPhone SE"],
                 iphone: {
                     title: "iPhone",
                     products: formatProducts(iphones),
