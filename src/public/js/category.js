@@ -1,3 +1,4 @@
+// Hàm hiển thị breadcrumb
 async function generateBreadcrumb() {
     let slug = location.pathname.split("/").filter(x => x).pop(); // Lấy slug từ URL
 
@@ -19,7 +20,7 @@ async function generateBreadcrumb() {
         console.error("Lỗi khi lấy breadcrumb:", error);
         document.getElementById("breadcrumb").innerHTML = `<a class="breadcrumb-link" href="/">Trang chủ</a>`;
     }
-}
+};
 
 // Gọi hàm khi trang tải xong
 generateBreadcrumb();
