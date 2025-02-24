@@ -6,7 +6,7 @@ function generateBreadcrumb() {
     let path = "";
     pathArray.forEach((part, index) => {
         path += `/${part}`;
-        breadcrumb += `<a class="breadcrumb-link" href="${path}"> > ${decodeURIComponent(part)}</a>`;
+        breadcrumb += `<a class="breadcrumb-link" href="${path}">&nbsp;&nbsp›&nbsp;&nbsp${decodeURIComponent(part)}</a>`;
     })
 
     document.getElementById("breadcrumb").innerHTML = breadcrumb.trim();
