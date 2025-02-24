@@ -3,6 +3,7 @@ import iphoneRouter from "./iphone.js";
 import ipadRouter from "./ipad.js";
 import macRouter from "./mac.js";
 import registerRouter from "./registerRouter.js";
+import productRouter from "./productDetail.js";
 import loginRouter from "./loginRouter.js";
 import searchRoute from "./searchRoute.js";
 
@@ -12,6 +13,7 @@ function route(app) {
     app.use("/ipad", ipadRouter);
     app.use("/mac", macRouter);
     app.use("/register", registerRouter);
+    app.use("/product", productRouter);
     app.use("/login", loginRouter);
     app.use("/search", searchRoute);
 }
