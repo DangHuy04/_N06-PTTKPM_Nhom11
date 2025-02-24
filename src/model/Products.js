@@ -24,6 +24,7 @@ const productSchema = new mongoose.Schema({
     discount: String,
     installment: String,
     oldPrice: Number,
+    tags: Array,
 });
 
 const Product = mongoose.model('Product', productSchema);

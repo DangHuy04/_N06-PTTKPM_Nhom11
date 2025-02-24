@@ -19,6 +19,8 @@ class iphoneController {
                 }));
 
             res.render('iphone', {
+                layout: "category",
+                title: "iPhone",
                 banners: [
                     "../img/banner_iphone_16e.png",
                     "../img/banner_home_2.png",

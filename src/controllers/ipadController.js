@@ -19,6 +19,8 @@ class ipadController {
                 }));
 
             res.render('ipad', {
+                layout: "category",
+                title: "iPad",
                 banners: [
                     "../img/banner_home_1.png",
                     "../img/banner_home_2.png",

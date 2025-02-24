@@ -19,6 +19,8 @@ class macController {
                 }));
 
             res.render('mac', {
+                layout: "category",
+                title: "Mac",
                 banners: [
                     "../img/banner_APsr-T2_.png",
                     "../img/banner_home_2.png",
