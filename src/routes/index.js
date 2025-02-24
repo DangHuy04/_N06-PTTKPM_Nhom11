@@ -6,6 +6,7 @@ import registerRouter from "./registerRouter.js";
 import productRouter from "./productDetail.js";
 import loginRouter from "./loginRouter.js";
 import searchRoute from "./searchRoute.js";
+import breadcrumbRouter from "./breadcrumbRoute.js";
 
 function route(app) {
     app.use("/", homeRouter);
@@ -13,9 +14,10 @@ function route(app) {
     app.use("/ipad", ipadRouter);
     app.use("/mac", macRouter);
     app.use("/register", registerRouter);
-    app.use("/product", productRouter);
     app.use("/login", loginRouter);
     app.use("/search", searchRoute);
+    app.use("/", productRouter);
+    app.use("/breadcrumb", breadcrumbRouter);
 }
 
 export default route;

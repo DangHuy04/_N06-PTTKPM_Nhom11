@@ -26,7 +26,7 @@
     <h1>{{iphone.title}}</h1>
     <div class="grid">
         {{#each iphone.products}}
-        <a href="/product/{{this.productId}}" class="card-link"> 
+        <a href="/{{this.productId}}" class="card-link"> 
             <div class="card">
                 {{#if this.discount}}
                     <div class="badge discount">{{this.discount}}</div>
@@ -52,7 +52,7 @@
     <h1>{{ipad.title}}</h1>
     <div class="grid">
         {{#each ipad.products}}
-        <a href="/product/{{this.productId}}" class="card-link">
+        <a href="/{{this.productId}}" class="card-link">
             <div class="card">
                 {{#if this.discount}}
                     <div class="badge discount">{{this.discount}}</div>
@@ -78,7 +78,7 @@
     <h1>{{mac.title}}</h1>
     <div class="grid">
         {{#each mac.products}}
-        <a href="/product/{{this.productId}}" class="card-link">
+        <a href="/{{this.productId}}" class="card-link">
             <div class="card">
                 {{#if this.discount}}
                     <div class="badge discount">{{this.discount}}</div>

@@ -1,14 +1,25 @@
-//Ham tao breadcrumb tu dong
-function generateBreadcrumb() {
-    let pathArray = location.pathname.split("/").filter(x => x);
-    let breadcrumb = `<a class="breadcrumb-link" href="/">Trang chủ</a>`;
+async function generateBreadcrumb() {
+    let slug = location.pathname.split("/").filter(x => x).pop(); // Lấy slug từ URL
 
-    let path = "";
-    pathArray.forEach((part, index) => {
-        path += `/${part}`;
-        breadcrumb += `<a class="breadcrumb-link" href="${path}">&nbsp;&nbsp›&nbsp;&nbsp${decodeURIComponent(part)}</a>`;
-    })
+    try {
+        // Gửi Request đến API /breadcrumb/:slug
+        let res = await fetch(`/breadcrumb/${slug}`);
 
-    document.getElementById("breadcrumb").innerHTML = breadcrumb.trim();
+        // Chuyển đổi dữ liệu trả về thành JSON
+        let data = await res.json();
+
+        if (!data.breadcrumb) throw new Error("Không tìm thấy breadcrumb");
+
+        let breadcrumb = data.breadcrumb.map(item =>
+            `<a class="breadcrumb-link" href="${item.path}">${item.name}</a>`
+        ).join('&nbsp;&nbsp;›&nbsp;&nbsp;');
+
+        document.getElementById("breadcrumb").innerHTML = breadcrumb;
+    } catch (error) {
+        console.error("Lỗi khi lấy breadcrumb:", error);
+        document.getElementById("breadcrumb").innerHTML = `<a class="breadcrumb-link" href="/">Trang chủ</a>`;
+    }
 }
+
+// Gọi hàm khi trang tải xong
 generateBreadcrumb();

@@ -2,7 +2,7 @@
 <div class="container">
     <div class="grid">
         {{#each ipad.products}}
-        <a href="/product/{{this.productId}}" class="card-link">
+        <a href="/{{this.productId}}" class="card-link">
             <div class="card">
                 {{#if this.discount}}
                     <div class="badge discount">{{this.discount}}</div>

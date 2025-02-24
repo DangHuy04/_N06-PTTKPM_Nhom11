@@ -53,7 +53,7 @@ class ProductController {
             }));
 
             res.render("productDetail", {
-                layout: "home",
+                layout: "category",
                 name: product.name,
                 price: product.price.toLocaleString() + "đ",
                 image: product.image,

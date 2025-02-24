@@ -74,24 +74,5 @@ app.listen(port, () => {
 // Route các trang chính
 route(app);
 
-// Route đăng nhập
-app.get('/login', async (req, res) => {
-  try {
-    res.render('login', { layout: false });
-  } catch (err) {
-    console.error('Error fetching products:', err);
-    res.status(500).send('Server Error');
-  }
-});
-
-// Route đăng kí
-app.get('/register', async (req, res) => {
-  try {
-    res.render('register', { layout: false });
-  } catch (err) {
-    console.error('Error fetching products:', err);
-    res.status(500).send('Server Error');
-  }
-});
 
 
