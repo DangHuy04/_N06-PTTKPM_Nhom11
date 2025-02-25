@@ -91,55 +91,126 @@
         </div>
     </div>
 </div>
+<!-- Thêm phần search-box mới -->
 <div class="search-box" id="searchBox">
-    <form action="/search" id="search-form">
-        <input type="text" class="search-box-input" name="query" id="searchterms" placeholder="Tìm kiếm">
-    </form>
+    <div class="search-container">
+        <form action="/search" id="search-form">
+            <div class="search-input-wrapper">
+                <input type="text" class="search-box-input" name="query" id="searchterms"
+                    placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+                <button type="submit" class="search-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+        <div class="search-suggestions" id="searchSuggestions">
+            <!-- Suggestions sẽ được thêm vào đây bằng JavaScript -->
+        </div>
+    </div>
 </div>
 <div id="overlay" class="overlay"></div>
 </div>
 
 <script>
-    document.getElementById("timkiem").addEventListener("click", function(event) {
-    event.preventDefault(); // Ngăn chặn load lại trang khi click vào <a>
+    // Khởi tạo các biến global
+    const searchInput = document.getElementById('searchterms');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    const searchForm = document.getElementById("search-form");
+    const searchBox = document.getElementById("searchBox");
+    const header = document.getElementById("header");
+    const overlay = document.getElementById("overlay");
+    const userIcon = document.getElementById('userIcon');
+    const dropdownMenu = document.getElementById('dropdownMenu');
 
-    let menu = document.getElementById("header");
-    let searchBox = document.getElementById("searchBox");
+    // Xử lý sự kiện click nút tìm kiếm
+    document.getElementById("timkiem").addEventListener("click", function (event) {
+        event.preventDefault();
 
-    menu.style.display = "none"; // Ẩn menu
-    searchBox.style.display = "flex"; // Hiện ô tìm kiếm
-    overlay.style.display = "block";
+        header.style.display = "none";
+        searchBox.style.display = "flex";
+        overlay.style.display = "block";
+        searchInput.focus(); // Auto focus vào ô tìm kiếm
 
-    // Xử lý khi click ra ngoài
-    document.addEventListener("click", function hideSearchBox(e) {
-        if (!searchBox.contains(e.target) && !event.target.contains(e.target)) {
-            menu.style.display = "flex"; // Hiện menu lại
-            searchBox.style.display = "none"; // Ẩn ô tìm kiếm
-            overlay.style.display = "none";
-            document.removeEventListener("click", hideSearchBox); // Xóa sự kiện để tránh lặp vô hạn
-        }
+        // Xử lý click ra ngoài
+        document.addEventListener("click", function hideSearchBox(e) {
+            if (!searchBox.contains(e.target) && !event.target.contains(e.target)) {
+                header.style.display = "flex";
+                searchBox.style.display = "none";
+                searchSuggestions.style.display = "none";
+                overlay.style.display = "none";
+                document.removeEventListener("click", hideSearchBox);
+            }
+        });
     });
 
-    });
+    // Xử lý form submit
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    // Xử lý thanh tìm kiếm
-    document.getElementById("search-form").addEventListener("submit", function (event) {
-        event.preventDefault(); // Ngăn form gửi đi nếu không hợp lệ
-
-        let searchContent = document.getElementById("searchterms").value.trim();
-        let words = searchContent.split(""); 
-        console.log("Word length :",words.length);
-        if (words.length < 3) {
+        const searchContent = searchInput.value.trim();
+        if (searchContent.length < 3) {
             alert("Độ dài tối thiểu của từ khoá tìm kiếm là 3 kí tự");
             return;
         }
 
-        this.submit(); // Nếu hợp lệ, gửi form đi
+        this.submit();
     });
 
+    // Xử lý input search với debounce
+    searchInput.addEventListener('input', debounce(async (e) => {
+        const query = e.target.value.trim();
 
-    document.getElementById('userIcon').addEventListener('click', function () {
-        var dropdownMenu = document.getElementById('dropdownMenu');
+        if (query.length < 2) {
+            searchSuggestions.style.display = 'none';
+            return;
+        }
+
+        try {
+            // Gọi API để lấy gợi ý sản phẩm
+            const response = await fetch(`/api/search-suggestions?q=${query}`);
+            const suggestions = await response.json();
+
+            if (suggestions.length > 0) {
+                displaySuggestions(suggestions);
+            } else {
+                searchSuggestions.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+        }
+    }, 300));
+
+    // Hiển thị gợi ý sản phẩm
+    function displaySuggestions(suggestions) {
+        searchSuggestions.innerHTML = '';
+
+        suggestions.forEach(product => {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.className = 'suggestion-item';
+            suggestionItem.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="suggestion-image">
+            <div class="suggestion-content">
+                <div class="suggestion-title">${highlightMatch(product.name, searchInput.value)}</div>
+                <div class="suggestion-price">${formatPrice(product.price)}</div>
+            </div>
+        `;
+
+            suggestionItem.addEventListener('click', () => {
+                window.location.href = `/${product.productId}`;
+            });
+
+            searchSuggestions.appendChild(suggestionItem);
+        });
+
+        searchSuggestions.style.display = 'block';
+    }
+
+    // Xử lý user menu
+    userIcon?.addEventListener('click', function () {
         if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
             dropdownMenu.style.display = 'block';
         } else {
@@ -147,16 +218,87 @@
         }
     });
 
-    // Đóng menu khi nhấp ra ngoài
+    // Đóng dropdown menu khi click ra ngoài
     window.onclick = function (event) {
         if (!event.target.matches('.user-icon')) {
-            var dropdowns = document.getElementsByClassName("dropdown-menu");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.style.display === 'block') {
-                    openDropdown.style.display = 'none';
+            const dropdowns = document.getElementsByClassName("dropdown-menu");
+            Array.from(dropdowns).forEach(dropdown => {
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
                 }
-            }
+            });
         }
     }
+
+    // Utility Functions
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    function formatPrice(price) {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(price);
+    }
+
+    function highlightMatch(text, query) {
+        if (!query) return text;
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    // Xử lý keyboard navigation trong suggestions
+    searchInput.addEventListener('keydown', function (e) {
+        const items = searchSuggestions.getElementsByClassName('suggestion-item');
+        const current = searchSuggestions.querySelector('.suggestion-item.selected');
+
+        if (items.length === 0) return;
+
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+
+            let next;
+            if (!current) {
+                next = e.key === 'ArrowDown' ? items[0] : items[items.length - 1];
+            } else {
+                const currentIndex = Array.from(items).indexOf(current);
+                if (e.key === 'ArrowDown') {
+                    next = items[currentIndex + 1] || items[0];
+                } else {
+                    next = items[currentIndex - 1] || items[items.length - 1];
+                }
+                current.classList.remove('selected');
+            }
+
+            next.classList.add('selected');
+            searchInput.value = next.querySelector('.suggestion-title').textContent;
+        } else if (e.key === 'Enter' && current) {
+            e.preventDefault();
+            window.location.href = current.getAttribute('data-url');
+        }
+    });
+
+    // Thêm CSS cho selected item
+    const style = document.createElement('style');
+    style.textContent = `
+    .suggestion-item.selected {
+        background-color: #f0f0f0;
+    }
+    .suggestion-item mark {
+        background-color: #ffe066;
+        padding: 0 2px;
+        border-radius: 2px;
+    }
+`;
+    document.head.appendChild(style);
+
 </script>

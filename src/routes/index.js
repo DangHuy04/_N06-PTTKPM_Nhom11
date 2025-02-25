@@ -6,6 +6,7 @@ import registerRouter from "./registerRouter.js";
 import productRouter from "./productDetail.js";
 import loginRouter from "./loginRouter.js";
 import searchRoute from "./searchRoute.js";
+import apiRouter from "./api.js";
 import breadcrumbRouter from "./breadcrumbRoute.js";
 
 function route(app) {
@@ -16,6 +17,8 @@ function route(app) {
     app.use("/register", registerRouter);
     app.use("/login", loginRouter);
     app.use("/search", searchRoute);
+    app.use("/api", apiRouter); // Gắn API gợi ý vào "/api"
+    app.use('/api/search-suggestions', searchRoute);
     app.use("/", productRouter);
     app.use("/breadcrumb", breadcrumbRouter);
 }
