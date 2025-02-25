@@ -1,0 +1,27 @@
+.navbar {
+    background-color: #fff;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+  }
+  .navbar.sticky {
+    position: fixed;
+    top: 25px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .navbar .navbar-nav {
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+  }
+  .navbar .navbar-nav .nav-item .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+  }
+  .navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #007bff;
+}
