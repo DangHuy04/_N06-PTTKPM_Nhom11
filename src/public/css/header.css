@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,6 +18,9 @@ body {
 
 html {
   font-size: 16px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 .bulurr {
@@ -47,13 +49,12 @@ html {
 }
 
 .linkz {
-  font-size: 12px;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.8) !important;
   fill: rgba(255, 255, 255, 0.8) !important;
   letter-spacing: -0.12px;
   line-height: 12px;
   text-align: left;
-  padding-top: 5px;
   margin: 0 10px;
 }
 
@@ -72,7 +73,6 @@ html {
 a {
   text-decoration: none;
   display: block;
-  color: #fff;
 }
 
 ul {
@@ -85,17 +85,18 @@ img {
 
 /* header css */
 .header {
-  background-color: #000000;
+  background-color: #515154;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  color: #414141 !important;
+  color: #d2d2d7 !important;
   justify-content: center;
+  align-items: center;
   display: flex;
   position: fixed;
   top: 0px;
   width: 100%;
   z-index: 9999;
-  max-height: 44px;
+  max-height: 3.5em;
   flex-wrap: nowrap;
 }
 
@@ -111,7 +112,7 @@ img {
 .subnav1 {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 80%;
   right: 0;
   width: auto;
   z-index: 9999;
@@ -146,8 +147,10 @@ img {
   margin: 0;
   gap: 8px;
   position: absolute;
-  right: 75px;
-  background-color: #000000;
+  right: 20vw;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: -2px 5px 15px 5px rgba(0, 0, 0, 0.4); 
 }
 
 .auth-buttons {
@@ -159,35 +162,39 @@ img {
 
 .auth-btn {
   width: 100%;
-  font-size: 12px;
+  font-size: 15px;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: "SF Pro Display", sans-serif;
   text-align: left;
+  border: none;
 }
 
 .login-btn {
+  display: inline-block;
   background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #D2D2D7;
+  color: rgba(0, 0, 0, 0.8);
+  padding-bottom: 8px;
 }
 
 .login-btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #1d4ed8;
 }
 
 .signup-btn {
   background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #D2D2D7;
+  color: rgba(0, 0, 0, 0.8);
+  padding-bottom: 8px;
 }
 
 .signup-btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #1d4ed8;
 }
 
 /* footer css */
@@ -398,6 +405,82 @@ img {
   height: 45px;
 }
 
-/*# sourceMappingURL=app.css.map */
-=======
->>>>>>> 25e4c001fde5668b586a3e72e8ea57b69f6825b4
+/* Hiệu ứng fade-in */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.search-box {
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 3.5em;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #000;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  margin: 0;
+  padding: 0;
+}
+
+.search-box-input {
+  display: block;
+  visibility: visible;
+  width: 40rem;
+  height: 2rem;
+  text-indent: 20px;
+  outline: none;
+  animation: fadeIn 0.3s ease-in-out forwards;    
+}
+
+.search-box-input::placeholder {
+  color: rgb(108, 106, 106) !important;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .8;
+  z-index: 99;   
+  display: none; 
+}
+
+.breadcumb-container {
+  margin-top: 3.5em;
+  background-color: rgb(255, 255, 255);
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  text-indent: 2em;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.breadcrumb-link {
+  color: #515154;
+  display: inline;
+  font-size: 13px;
+}
+
+.breadcrumb-link:hover {
+  color: #007bff;
+}
+
+.page-title {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.banner {
+  margin-top: 1em !important;
+}

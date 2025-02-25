@@ -1,139 +1,133 @@
+import Product from "../model/Products.js";
+
 class ipadController {
-    index(req, res) {
-        res.render('ipad', {
-            banners: [
-                "../img/banner_home_1.png",
-                "../img/banner_home_2.png",
-                "../img/banner_home_3.png",
-                "../img/banner_home_4.png",
-                "../img/banner_home_5.png",
-                "../img/banner_home_6.png",
-                "../img/banner_home_7.png",
-            ],
-            series: ["iPad 10", "iPad Air M2", "iPad Pro M4", "iPad Mini", "iPad 9", "iPad Pro M1", "Phụ Kiện iPad"],
-            ipad: {
+    async index(req, res) {
+        try {
+            // Lấy tất cả sản phẩm iPad từ database
+            const ipads = await Product.find({ category: "ipad" });
+
+            // Hàm xử lý danh sách sản phẩm
+            const formatProducts = (products) =>
+                products.map(product => ({
+                    name: product.name,
+                    productId: product.productId,
+                    price: product.price.toLocaleString() + "đ",
+                    oldPrice: product.oldPrice ? product.oldPrice.toLocaleString() + "đ" : "",
+                    discount: product.discount || "",
+                    installment: product.installment || "",
+                    image: product.image
+                }));
+
+            res.render('ipad', {
+                layout: "category",
                 title: "iPad",
-                products: [
-                    {
-                        name: "iPad Pro 2024",
-                        price: "22.990.000đ",
-                        oldPrice: "25.990.000đ",
-                        discount: "Giảm 12%",
-                        image: "../img/ipad.png"
-                    },
-                    {
-                        name: "iPad Pro 2024",
-                        price: "22.990.000đ",
-                        oldPrice: "25.990.000đ",
-                        discount: "Giảm 12%",
-                        image: "../img/ipad.png"
-                    },
-                    {
-                        name: "iPad Pro 2024",
-                        price: "22.990.000đ",
-                        oldPrice: "25.990.000đ",
-                        discount: "Giảm 12%",
-                        image: "../img/ipad.png"
-                    },
-                    {
-                        name: "iPad Pro 2024",
-                        price: "22.990.000đ",
-                        oldPrice: "25.990.000đ",
-                        discount: "Giảm 12%",
-                        image: "../img/ipad.png"
-                    },
+                banners: [
+                    "../img/banner_home_1.png",
+                    "../img/banner_home_2.png",
+                    "../img/banner_home_3.png",
+                    "../img/banner_home_4.png",
+                    "../img/banner_home_5.png",
+                    "../img/banner_home_6.png",
+                    "../img/banner_home_7.png",
                 ],
-                infoSections: [
-                    {
-                        img: '../img/ipad.png',
-                        title: 'Tìm iPad phù hợp với bạn',
-                        link: '/compare',
-                        linkText: 'So sánh các iPad ›'
-                    },
-                    {
-                        img: '../img/ipad.png',
-                        title: 'Phụ kiện iPad thường mua kèm',
-                        link: '/accessories',
-                        linkText: 'Tìm phụ kiện ›'
-                    }
-                ],
-                aboutSections: [
-                    {
-                        title: 'bla bla',
-                        content: 'ble ble'
-                    }
-                ],
-                reviews: {
-                    averageRating: 5,
-                    totalReviews: 7,
-                    ratingCounts: [
-                        { stars: 5, percentage: 100, count: 7 },
-                        { stars: 4, percentage: 0, count: 0 },
-                        { stars: 3, percentage: 0, count: 0 },
-                        { stars: 2, percentage: 0, count: 0 },
-                        { stars: 1, percentage: 0, count: 0 }
-                    ],
-                    list: [
+                series: ["Tất cả", "iPad 10", "iPad Air M2", "iPad Pro M4", "iPad Mini", "iPad 9", "iPad Pro M1", "Phụ Kiện iPad"],
+                ipad: {
+                    title: "iPad",
+                    products: formatProducts(ipads),
+                    infoSections: [
                         {
-                            id: 1,
-                            name: "khánh",
-                            rating: 5,
-                            comment: "ngon",
-                            createdAt: "2023-09-21",
-                            image: null
+                            img: '../img/ipad.png',
+                            title: 'Tìm iPad phù hợp với bạn',
+                            link: '/compare',
+                            linkText: 'So sánh các iPad ›'
                         },
                         {
-                            id: 2,
-                            name: "Nguyenvanphuong",
-                            rating: 5,
-                            comment: "Ok",
-                            createdAt: "2023-07-26",
-                            image: null
-                        },
-                        {
-                            id: 3,
-                            name: "Vu thi trang",
-                            rating: 5,
-                            comment: "Tot",
-                            createdAt: "2023-07-12",
-                            image: null
-                        },
-                        {
-                            id: 4,
-                            name: "Huệ Trần",
-                            rating: 5,
-                            comment: "mac sẵn hàng quá",
-                            createdAt: "2023-06-01",
-                            image: null
-                        },
-                        {
-                            id: 5,
-                            name: "minh",
-                            rating: 5,
-                            comment: "dq",
-                            createdAt: "2023-05-30",
-                            image: null
-                        },
-                        {
-                            id: 6,
-                            name: "Thành",
-                            rating: 5,
-                            comment: "good",
-                            createdAt: "2023-05-30",
-                            image: null
-                        },
-                        {
-                            id: 7,
-                            name: "Uyên",
-                            rating: 5,
-                            comment: "Sản phẩm các dòng mac còn hàng nhiều",
-                            createdAt: "2023-04-24",
-                            image: null
+                            img: '../img/ipad.png',
+                            title: 'Phụ kiện iPad thường mua kèm',
+                            link: '/accessories',
+                            linkText: 'Tìm phụ kiện ›'
                         }
-                    ]
+                    ],
+                    aboutSections: [
+                        {
+                            title: 'bla bla',
+                            content: 'ble ble'
+                        }
+                    ],
+                    reviews: {
+                        averageRating: 5,
+                        totalReviews: 7,
+                        ratingCounts: [
+                            { stars: 5, percentage: 100, count: 7 },
+                            { stars: 4, percentage: 0, count: 0 },
+                            { stars: 3, percentage: 0, count: 0 },
+                            { stars: 2, percentage: 0, count: 0 },
+                            { stars: 1, percentage: 0, count: 0 }
+                        ],
+                        list: [
+                            {
+                                id: 1,
+                                name: "khánh",
+                                rating: 5,
+                                comment: "ngon",
+                                createdAt: "2023-09-21",
+                                image: null
+                            },
+                            {
+                                id: 2,
+                                name: "Nguyenvanphuong",
+                                rating: 5,
+                                comment: "Ok",
+                                createdAt: "2023-07-26",
+                                image: null
+                            },
+                            {
+                                id: 3,
+                                name: "Vu thi trang",
+                                rating: 5,
+                                comment: "Tot",
+                                createdAt: "2023-07-12",
+                                image: null
+                            },
+                            {
+                                id: 4,
+                                name: "Huệ Trần",
+                                rating: 5,
+                                comment: "mac sẵn hàng quá",
+                                createdAt: "2023-06-01",
+                                image: null
+                            },
+                            {
+                                id: 5,
+                                name: "minh",
+                                rating: 5,
+                                comment: "dq",
+                                createdAt: "2023-05-30",
+                                image: null
+                            },
+                            {
+                                id: 6,
+                                name: "Thành",
+                                rating: 5,
+                                comment: "good",
+                                createdAt: "2023-05-30",
+                                image: null
+                            },
+                            {
+                                id: 7,
+                                name: "Uyên",
+                                rating: 5,
+                                comment: "Sản phẩm các dòng mac còn hàng nhiều",
+                                createdAt: "2023-04-24",
+                                image: null
+                            }
+                        ]
+                    }
                 }
-            },
-        });
+            });
+        } catch (error) {
+            res.status(500).send("Lỗi khi lấy dữ liệu sản phẩm");
+        }
     }
     // Thêm method để xử lý post review mới
     async addReview(req, res) {
