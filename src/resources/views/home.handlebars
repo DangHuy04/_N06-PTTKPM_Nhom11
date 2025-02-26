@@ -113,12 +113,11 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Khởi tạo carousel
-    var carousel = new bootstrap.Carousel(document.querySelector('#carouselExample1','#carouselExample'), {
-        interval: 3000, // Thời gian chuyển slide (3 giây)
-        wrap: true // Cho phép quay vòng
+    document.addEventListener('DOMContentLoaded', function() {
+        var carousel = new bootstrap.Carousel(document.querySelector('#carouselExample1','#carouselExample'), {
+            interval: 4000, 
+            wrap: true 
+        });
     });
-});
 </script>
 <link rel="stylesheet" href="../css/home.css">

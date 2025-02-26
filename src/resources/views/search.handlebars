@@ -1,0 +1,29 @@
+
+<h2 class="text-center" style="font-weight: 600; margin: 50px;">Kết quả tìm kiếm cho "{{keyword}}"</h2>
+
+{{#if products.length}}
+    <div class="grid">
+        {{#each products}}
+        <a href="/{{productId}}" class="card-link">
+            <div class="card">
+                {{#if discount}}
+                <div class="badge discount">{{discount}}</div>
+                {{/if}}
+                {{#if installment}}
+                <div class="badge installment">{{installment}}</div>
+                {{/if}}
+                <img src="{{image}}" alt="{{name}}">
+                <h2>{{name}}</h2>
+                <p class="price">{{price}}</p>
+                {{#if oldPrice}}
+                <p class="old-price">{{oldPrice}}</p>
+                {{/if}}
+            </div>
+        </a>
+        {{/each}}
+    </div>
+{{else}}
+    <p class="text-center">Không tìm thấy sản phẩm nào.</p>
+{{/if}}
+
+<link rel="stylesheet" href="../css/home.css">

@@ -1,3 +1,19 @@
+// Hàm dành cho thanh navbar các series sản phẩm
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    const sticky = navbar.offsetTop;
+
+    function handleScroll() {
+        if (window.scrollY > sticky - 40) {
+            navbar.classList.add('sticky');
+        } else {
+            navbar.classList.remove('sticky');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+});
+
 // Hàm hiển thị breadcrumb
 async function generateBreadcrumb() {
     let slug = location.pathname.split("/").filter(x => x).pop(); // Lấy slug từ URL
