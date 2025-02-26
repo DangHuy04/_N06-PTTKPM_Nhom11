@@ -1,38 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Đăng Ký - Apple Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Đăng Ký</h1>
-        </div>
-        <div class="form">
-            <form id="register-form" action="/register" method="POST">
-                <label for="register-name">Họ và Tên</label>
-                <input type="text" id="register-name" name="name" placeholder="Nhập họ và tên của bạn" required>
+    {{> header}}
 
-                <label for="register-email">Email</label>
-                <input type="email" id="register-email" name="email" placeholder="Nhập email của bạn" required>
-                
-                <label for="register-password">Mật khẩu</label>
-                <input type="password" id="register-password" name="password" placeholder="Nhập mật khẩu của bạn" required>
-
-                <label for="register-phonenumber">Số Điện Thoại</label>
-                <input type="tel" id="register-phonenumber" name="phone" placeholder="Nhập số điện thoại của bạn" required>
-                
-                <button type="submit">Đăng Ký</button>
-            </form>
-            <div class="toggle">
-                <p>Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
+    <section class="register-section">
+        <div class="container py-5">
+            <div class="row d-flex align-items-center justify-content-center">
+                <!-- Cột chứa hình ảnh -->
+                <div class="col-md-6">
+                    <img src="../img/sign-up-bg.svg" class="img-fluid" alt="Sign Up Background">
+                </div>
+                <!-- Cột chứa form đăng ký -->
+                <div class="col-md-4">
+                    <div class="form-wrapper">
+                        <h1 class="mb-4" style="font-weight:600;color:rgb(93, 14, 189)">Đăng Ký</h1>
+                        <form id="register-form" action="/register" method="POST">
+                            <!-- Họ và Tên -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="register-name">Họ và Tên</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" id="register-name" name="name"
+                                        class="form-control form-control-lg" placeholder="Nhập họ và tên của bạn"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- Email -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="register-email">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" id="register-email" name="email"
+                                        class="form-control form-control-lg" placeholder="Nhập email của bạn" required>
+                                </div>
+                            </div>
+                            <!-- Mật khẩu -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="register-password">Mật khẩu</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                    <input type="password" id="register-password" name="password"
+                                        class="form-control form-control-lg" placeholder="Nhập mật khẩu của bạn"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- Số điện thoại -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="register-phonenumber">Số Điện Thoại</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                    <input type="tel" id="register-phonenumber" name="phone"
+                                        class="form-control form-control-lg" placeholder="Nhập số điện thoại của bạn"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- Nút đăng ký -->
+                            <button type="submit" class="btn btn-primary btn-lg btn-block w-100"
+                                style="background:rgb(93, 14, 189)">Đăng Ký</button>
+                            <!-- Divider -->
+                            <div class="divider d-flex align-items-center my-4">
+                                <span class="fw-bold mx-3 mb-0 text-muted">Hoặc</span>
+                            </div>
+                            <!-- Google Sign-Up button (hiển thị "Đăng ký với Google") -->
+                            <div id="googleSignUpButton">
+                                <div id="g_id_onload"
+                                    data-client_id="381875690048-bjt7jpkupdlvanibb6ojpalfbfsto3hs.apps.googleusercontent.com"
+                                    data-login_uri="http://localhost:3000/google-signup-callback"
+                                    data-auto_prompt="false">
+                                </div>
+                                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                                    data-text="signup_with" data-shape="rectangular" data-logo_alignment="left">
+                                </div>
+                            </div>
+                            <!-- Link đăng nhập -->
+                            <div class="text-center mt-3">
+                                <p class="mb-0">Đã có tài khoản? <a href="/login" class="text-primary">Đăng nhập</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    {{> footer}}
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/register.js"></script>
 </body>
+
 </html>
