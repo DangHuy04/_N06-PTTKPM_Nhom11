@@ -1,0 +1,398 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "SF Pro Display", sans-serif !important;
+  max-width: 100% !important;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+body {
+  margin: 0 !important;
+  overflow-x: hidden;
+  background-color: #000000;
+}
+
+html {
+  font-size: 16px;
+}
+
+.bulurr {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  z-index: 9998;
+}
+
+.phuWeb {
+  background-color: rgba(200, 200, 200, 0.1) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  z-index: 9998;
+  animation: fadeIn;
+  animation-duration: 0.3s;
+}
+
+.linkz {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8) !important;
+  fill: rgba(255, 255, 255, 0.8) !important;
+  letter-spacing: -0.12px;
+  line-height: 12px;
+  text-align: left;
+  padding-top: 5px;
+  margin: 0 10px;
+}
+
+.linkz svg path {
+  padding-bottom: 100px;
+}
+
+.linkz:hover {
+  color: #fff !important;
+}
+
+.linkz:hover svg path {
+  fill: #fff !important;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+/* header css */
+.header {
+  background-color: #000000;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #414141 !important;
+  justify-content: center;
+  display: flex;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 9999;
+  max-height: 44px;
+  flex-wrap: nowrap;
+}
+
+.chung {
+  padding: 10px 20px;
+  opacity: 1.5;
+}
+
+.chung a {
+  color: #414141;
+}
+
+.subnav1 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: auto;
+  z-index: 9999;
+  background-color: none;
+  backdrop-filter: none;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+.chung:hover .subnav1 {
+  display: block !important;
+  animation: growDon 0.1s ease-in-out forwards;
+}
+
+.h1chung a {
+  color: #fff !important;
+  font-size: 24px;
+}
+
+/* Updated subnav11 and auth buttons styles */
+.subnav11 {
+  min-width: 200px;
+  padding: 8px;
+  margin: 0;
+  gap: 8px;
+  position: absolute;
+  right: 75px;
+  background-color: #000000;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.auth-btn {
+  width: 100%;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "SF Pro Display", sans-serif;
+  text-align: left;
+}
+
+.login-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.login-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.signup-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.signup-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* footer css */
+.footer {
+  background-color: #444444;
+  height: 720px;
+  width: 100vw;
+}
+
+.ft-center {
+  height: 658px;
+  width: 70vw;
+  margin: 0px auto;
+}
+
+.ft-1 {
+  height: 55px;
+  width: 67vw;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  padding: 17px 0px 11px;
+  border-bottom: 1px solid #cececf;
+}
+
+.ft-1 li {
+  list-style-type: none;
+  font-size: 12px;
+  color: #fff !important;
+  letter-spacing: -0.12px;
+  line-height: 12px;
+}
+
+.navft {
+  height: 358px;
+  width: 67vw;
+  display: flex;
+  padding: 20px 0px 0px;
+}
+
+.hding {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  margin: 0px 20px 9.6px 0px;
+  font-family: SF Pro Text;
+}
+
+.divn li {
+  list-style-type: none;
+}
+
+.divn li a {
+  color: #fff !important;
+  display: inline;
+  font-family: SF Pro Text;
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+}
+
+.divn li a:hover {
+  text-decoration: underline;
+}
+
+.divn {
+  height: 338px;
+  width: 196px;
+}
+
+.ft-2 {
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  padding: 37px 0px 11px;
+}
+
+.single-line {
+  color: #fff !important;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.single-line a {
+  white-space: nowrap;
+  text-decoration: underline;
+  color: #06c;
+  display: inline-block;
+}
+
+.single-line a span {
+  color: #fff !important;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.divn1 {
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  margin: 0px 0px 16px;
+  padding: 0px 0px 19px;
+  font-family: SF Pro Text;
+  border-bottom: 1px solid #cececf;
+}
+
+.single-line ul li {
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  margin: 5px 30px 0px 0px;
+}
+
+.item-1 {
+  color: #fff;
+  display: inline;
+  font-family: SF Pro Text;
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  padding: 0px 9px 0px 0px;
+}
+
+.item-1:hover {
+  text-decoration: underline;
+}
+
+.inline-list {
+  list-style-type: none;
+  padding-left: 0px;
+  padding-top: 10px;
+  margin: 0;
+  display: flex;
+}
+
+.inline-list li {
+  margin-right: 5px;
+}
+
+.inline-list li:not(:last-child)::after {
+  content: "|";
+  margin-left: 0px;
+}
+
+.item-2 {
+  color: #fff;
+  display: inline;
+  font-family: SF Pro Text;
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  position: relative;
+}
+
+.item-2:hover {
+  text-decoration: underline;
+}
+
+.divn2 {
+  position: relative;
+}
+
+.item-2 {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.divn3 {
+  height: 73px;
+  width: 70vw;
+  position: relative;
+}
+
+.divn3 ul {
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  margin: 5px 30px 0px 0px;
+  padding-left: 0;
+  padding-top: 15px;
+  color: #fff;
+}
+
+.divn3 span {
+  font-size: 12px;
+  color: #fff !important;
+  letter-spacing: -0.12px;
+  position: absolute;
+  top: 0;
+  right: 150px;
+}
+
+.divn4 {
+  width: 70vw;
+  height: 75px;
+  background-color: #444444 !important;
+}
+
+.divn4 img {
+  color: #444444 !important;
+  display: inline;
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  line-height: 16.0005px;
+  width: 120px;
+  height: 45px;
+}
+
+/*# sourceMappingURL=app.css.map */

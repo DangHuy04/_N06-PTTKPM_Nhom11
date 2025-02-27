@@ -1,3 +1,4 @@
+// controllers/searchController.js
 import Product from "../model/Products.js";
 
 // API tìm kiếm sản phẩm
@@ -14,6 +15,7 @@ const searchAPI = async (req, res) => {
             });
         }
 
+        // Thêm giới hạn kết quả và sắp xếp
         const results = await Product.find({
             $or: [
                 { name: { $regex: keyword, $options: "i" } },

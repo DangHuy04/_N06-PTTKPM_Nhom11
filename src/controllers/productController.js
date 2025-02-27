@@ -53,7 +53,9 @@ class ProductController {
             }));
 
             res.render("productDetail", {
-                layout: "productDetail",
+                layout: "category",
+                hideBanner: true,
+                hideNavbar: true,
                 name: product.name,
                 price: product.price.toLocaleString() + "đ",
                 image: product.image,
