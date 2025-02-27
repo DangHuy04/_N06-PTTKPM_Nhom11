@@ -5,11 +5,11 @@ class ProductController {
     async show(req, res) {
         try {
             const product = await Product.findOne({ productId: req.params.productID });
-
+    
             if (!product) {
                 return res.status(404).send("Sản phẩm không tồn tại");
             }
-
+    
             // Xác định loại specs dựa trên category
             let specsDisplay;
             if (product.category === 'iphone') {
@@ -22,7 +22,7 @@ class ProductController {
                         battery: product.specs.battery
                     }
                 };
-            } else { // iPad hoặc Mac
+            } else {
                 specsDisplay = {
                     type: 'other',
                     items: {
@@ -35,13 +35,13 @@ class ProductController {
                     }
                 };
             }
-
+    
             // Lấy các sản phẩm tương tự
             const relatedProducts = await Product.find({
                 category: product.category,
                 productId: { $ne: req.params.productID }
             }).limit(4);
-
+    
             const formattedRelatedProducts = relatedProducts.map(prod => ({
                 productId: prod.productId,
                 name: prod.name,
@@ -51,7 +51,7 @@ class ProductController {
                 installment: prod.installment,
                 oldPrice: prod.oldPrice ? prod.oldPrice.toLocaleString() + "đ" : null
             }));
-
+    
             res.render("productDetail", {
                 layout: "category",
                 hideBanner: true,
@@ -63,14 +63,16 @@ class ProductController {
                 category: product.category,
                 stock: product.stock,
                 specsDisplay: specsDisplay,
-                products: formattedRelatedProducts
+                products: formattedRelatedProducts,
+                variants: JSON.stringify(product.variants) // Thêm variants
             });
-
+    
         } catch (error) {
             console.error('Error:', error);
             res.status(500).send("Lỗi khi lấy dữ liệu sản phẩm");
         }
     }
+    
 }
 
 
