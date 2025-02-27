@@ -1,38 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('login-form'); // Lấy form đăng nhập
-    const errorElement = document.getElementById('error-message'); // Lấy thẻ để hiển thị lỗi
+    const form = document.getElementById('login-form');
+    const errorElement = document.getElementById('error-message');
+
+    const showError = (message) => {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        setTimeout(() => {
+            errorElement.style.display = 'none';
+        }, 3000); // Ẩn thông báo sau 3 giây
+    };
 
     form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Ngăn form gửi đi ngay lập tức
+        event.preventDefault();
+        errorElement.style.display = 'none'; // Ẩn thông báo lỗi cũ
 
-        const formData = new FormData(form); // Lấy dữ liệu từ form
-        const data = Object.fromEntries(formData); // Chuyển đổi thành object
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
 
         try {
-            const response = await fetch('/login', { // Gửi yêu cầu tới server
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data) // Chuyển đổi object thành chuỗi JSON
+                body: JSON.stringify(data)
             });
 
-            // Kiểm tra mã trạng thái phản hồi
             if (response.redirected) {
-                // Nếu server chuyển hướng, đưa người dùng tới trang home
-                window.location.href = response.url; // Chuyển hướng đến URL trả về từ server
+                window.location.href = response.url;
             } else {
-                const result = await response.json(); // Nhận phản hồi từ server
-
-                // Nếu có lỗi
+                const result = await response.json();
                 if (!result.success) {
-                    alert(result.message || "Đã xảy ra lỗi!"); // Hiển thị thông báo lỗi 
+                    showError(result.message || "Đã xảy ra lỗi!");
                 }
             }
         } catch (error) {
             console.error('Error:', error);
-            errorElement.style.display = 'block'; // Hiển thị thông báo lỗi
-            errorElement.textContent = 'Có lỗi xảy ra khi đăng nhập.';
+            showError('Có lỗi xảy ra khi đăng nhập.');
         }
     });
 });

@@ -36,3 +36,11 @@ a.text-primary {
     color: #a8a9ab !important;
     opacity: 1;
 }
+
+#error-message {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}

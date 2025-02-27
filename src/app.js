@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import { create } from 'express-handlebars';
 import route from './routes/index.js';
+import session from 'express-session';
 
 const app = express()
 const port = 3000
@@ -54,6 +55,22 @@ const hbs = create({
 // Set up Handlebars làm template engine
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 24 * 60 * 60 * 1000 // 24 giờ
+  }
+}));
+
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
+
 
 // Cấu hình Express để phục vụ các file tĩnh từ thư mục 'public'
 app.use(cors({
