@@ -21,8 +21,7 @@ function route(app) {
     app.use('/logout', logoutRouter);
     app.use('/profile', profileRouter);
     app.use("/search", searchRoute);
-    app.use("/api", apiRouter); // Gắn API gợi ý vào "/api"
-    app.use('/api/search-suggestions', searchRoute);
+    app.use('/search/search-suggestions', searchRoute);
     app.use("/", productRouter);
     app.use("/breadcrumb", breadcrumbRouter);
 }
