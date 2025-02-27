@@ -36,7 +36,7 @@ class homeController {
                 }));
             // Render ra giao diện
             res.render("home", {
-                banner: "../img/banner-footer.png",
+                // banner: "../img/banner-footer.png",
                 layout: "home",
                 banners: [
                     "../img/banner_home_1.png",

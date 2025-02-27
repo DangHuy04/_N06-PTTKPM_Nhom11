@@ -8,7 +8,6 @@ import loginRouter from "./loginRouter.js";
 import logoutRouter from './logout.js';
 import profileRouter from './profileRouter.js';
 import searchRoute from "./searchRoute.js";
-import apiRouter from "./api.js";
 import breadcrumbRouter from "./breadcrumbRoute.js";
 
 function route(app) {
