@@ -28,18 +28,27 @@ function requireLogin(req, res, next) {
 }
 
 router.get('/', requireLogin, async (req, res) => {
-    try {
-      const userId = req.session.user.id;
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.redirect('/login');
-      }
-      res.render('profile', { layout: '' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Lỗi server');
+  try {
+    const userId = req.session.user.id;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.redirect('/login');
     }
-  });
+    res.render('profile', {
+      layout: '',
+      user: {
+        username: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        avatar: user.avatar
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Lỗi server');
+  }
+});
 
 // POST /profile: Cập nhật thông tin và upload avatar
 router.post('/', requireLogin, upload.single('avatar'), async (req, res) => {

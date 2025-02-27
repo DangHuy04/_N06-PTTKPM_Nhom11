@@ -1,99 +1,89 @@
-{{!-- Product Detail Section --}}
 <div class="container product-detail">
     <div class="product-grid">
+        <!-- Phần hình ảnh sản phẩm -->
         <div class="product-image">
-            <img src="{{image}}" alt="{{name}}">
+            <img id="productImage" src="{{image}}" alt="{{name}}">
         </div>
 
+        <!-- Phần thông tin sản phẩm -->
         <div class="product-info">
             <h1>{{name}}</h1>
-            <p class="price">{{price}}</p>
+            <p class="price" id="productPrice">{{price}}</p>
 
+            <!-- Phần chọn cấu hình -->
+            <div class="product-options">
+                {{#if specsDisplay.items.storage}}
+                <div class="option-group">
+                    <h3>Bộ nhớ</h3>
+                    <div class="storage-options">
+                        {{#each specsDisplay.items.storage}}
+                        <button class="option-btn storage-btn" data-storage="{{this}}">{{this}}</button>
+                        {{/each}}
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if specsDisplay.items.color}}
+                <div class="option-group">
+                    <h3>Màu sắc</h3>
+                    <div class="color-options">
+                        {{#each specsDisplay.items.color}}
+                        <button class="option-btn color-btn" data-color="{{this}}">
+                            <span class="color-circle" style="background-color: {{this}}"></span>
+                            {{this}}
+                        </button>
+                        {{/each}}
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+
+            <!-- Trạng thái còn hàng -->
             <div class="stock {{#if stock}}in-stock{{else}}out-of-stock{{/if}}">
                 {{#if stock}}Còn hàng{{else}}Hết hàng{{/if}}
             </div>
 
+            <!-- Thông số kỹ thuật -->
             <div class="specs">
-                <h2 style="font-weight: bold">Thông số kỹ thuật</h2>
+                <h2>Thông số kỹ thuật</h2>
                 <ul>
                     {{#if (eq specsDisplay.type 'iphone')}}
-                    {{#if specsDisplay.items.storage}}
-                    <li>
-                        <span class="spec-label">Bộ nhớ:</span>
-                        <span class="spec-value">{{join specsDisplay.items.storage ", "}}</span>
-                    </li>
-                    {{/if}}
-
-                    {{#if specsDisplay.items.color}}
-                    <li>
-                        <span class="spec-label">Màu sắc:</span>
-                        <span class="spec-value">{{join specsDisplay.items.color ", "}}</span>
-                    </li>
-                    {{/if}}
-
                     {{#if specsDisplay.items.camera}}
-                    <li>
-                        <span class="spec-label">Camera:</span>
-                        <span class="spec-value">{{specsDisplay.items.camera}}</span>
-                    </li>
+                    <li><span class="spec-label">Camera:</span> <span
+                            class="spec-value">{{specsDisplay.items.camera}}</span></li>
                     {{/if}}
-
                     {{#if specsDisplay.items.battery}}
-                    <li>
-                        <span class="spec-label">Pin:</span>
-                        <span class="spec-value">{{specsDisplay.items.battery}}</span>
-                    </li>
+                    <li><span class="spec-label">Pin:</span> <span
+                            class="spec-value">{{specsDisplay.items.battery}}</span></li>
                     {{/if}}
                     {{else}}
                     {{#if specsDisplay.items.chip}}
-                    <li>
-                        <span class="spec-label">Chip:</span>
-                        <span class="spec-value">{{specsDisplay.items.chip}}</span>
-                    </li>
+                    <li><span class="spec-label">Chip:</span> <span
+                            class="spec-value">{{specsDisplay.items.chip}}</span></li>
                     {{/if}}
-
                     {{#if specsDisplay.items.ram}}
-                    <li>
-                        <span class="spec-label">RAM:</span>
-                        <span class="spec-value">{{specsDisplay.items.ram}}</span>
+                    <li><span class="spec-label">RAM:</span> <span class="spec-value">{{specsDisplay.items.ram}}</span>
                     </li>
                     {{/if}}
-
-                    {{#if specsDisplay.items.storage}}
-                    <li>
-                        <span class="spec-label">Bộ nhớ:</span>
-                        <span class="spec-value">{{join specsDisplay.items.storage ", "}}</span>
-                    </li>
-                    {{/if}}
-
                     {{#if specsDisplay.items.screen}}
-                    <li>
-                        <span class="spec-label">Màn hình:</span>
-                        <span class="spec-value">{{specsDisplay.items.screen}}</span>
-                    </li>
+                    <li><span class="spec-label">Màn hình:</span> <span
+                            class="spec-value">{{specsDisplay.items.screen}}</span></li>
                     {{/if}}
-
-                    {{#if specsDisplay.items.battery}}
-                    <li>
-                        <span class="spec-label">Pin:</span>
-                        <span class="spec-value">{{specsDisplay.items.battery}}</span>
-                    </li>
-                    {{/if}}
-
                     {{#if specsDisplay.items.weight}}
-                    <li>
-                        <span class="spec-label">Trọng lượng:</span>
-                        <span class="spec-value">{{specsDisplay.items.weight}}</span>
-                    </li>
+                    <li><span class="spec-label">Trọng lượng:</span> <span
+                            class="spec-value">{{specsDisplay.items.weight}}</span></li>
                     {{/if}}
                     {{/if}}
                 </ul>
             </div>
+
+            <!-- Mô tả sản phẩm -->
             <div class="description">
-                <h2 style="font-weight: bold;">Mô tả sản phẩm</h2>
+                <h2>Mô tả sản phẩm</h2>
                 <p>{{description}}</p>
             </div>
 
+            <!-- Nút mua hàng -->
             <div class="actions">
                 <button class="button primary">Mua ngay</button>
                 <button class="button secondary">Thêm vào giỏ hàng</button>
@@ -101,6 +91,8 @@
         </div>
     </div>
 </div>
+
+
 
 {{!-- Related Products Section --}}
 <div class="container">
@@ -138,132 +130,154 @@
     </div>
 
     <div class="tab-content">
-        {{!-- Mô tả Tab --}}
-        <div id="description" class="tab-pane active">
-            <div class="description-content">
-                {{#each descriptionImages}}
-                <img src="{{this}}" alt="Product description">
+
+        <!-- Tab Mô tả: Hiển thị các hình ảnh theo hàng dọc và mô tả chung -->
+        <div id="mo-ta" class="tab-pane active">
+            <div class="description-images">
+                {{#each images}}
+                <img src="{{this}}" alt="{{../name}}" class="img-fluid mb-3" style="max-width: 100%; display: block;" />
                 {{/each}}
             </div>
         </div>
 
-        {{!-- Thông số Tab --}}
-        <div id="specs" class="tab-pane">
-            {{!-- <div class="specs-content">
-                <ul>
-                    {{#if (eq specsDisplay.type 'iphone')}}
-                    {{> iphoneSpecs specsDisplay=specsDisplay}}
-                    {{else}}
-                    {{> otherSpecs specsDisplay=specsDisplay}}
-                    {{/if}}
-                </ul>
-            </div> --}}
+
+        <!-- Tab Thông số kỹ thuật: Hiển thị các thông số chi tiết -->
+        <div id="thong-so" class="tab-pane">
+            <h2>Thông số kỹ thuật</h2>
+            <ul class="specs-list" style="list-style: none; padding: 0;">
+                {{#if specsDisplay.screen}}
+                <li><strong>Màn hình:</strong> {{specsDisplay.screen}}</li>
+                {{/if}}
+                {{#if specsDisplay.camera}}
+                <li><strong>Camera:</strong> {{specsDisplay.camera}}</li>
+                {{/if}}
+                {{#if specsDisplay.cpu}}
+                <li><strong>CPU:</strong> {{specsDisplay.cpu}}</li>
+                {{/if}}
+                {{#if specsDisplay.sim}}
+                <li><strong>SIM:</strong> {{specsDisplay.sim}}</li>
+                {{/if}}
+                {{#if specsDisplay.connectivity}}
+                <li><strong>Kết nối:</strong> {{specsDisplay.connectivity}}</li>
+                {{/if}}
+                {{#if specsDisplay.designWeight}}
+                <li><strong>Thiết kế và trọng lượng:</strong> {{specsDisplay.designWeight}}</li>
+                {{/if}}
+                {{#if specsDisplay.batteryCharging}}
+                <li><strong>Pin và sạc:</strong> {{specsDisplay.batteryCharging}}</li>
+                {{/if}}
+                {{#if specsDisplay.additionalInfo}}
+                <li><strong>Thông tin khác:</strong> {{specsDisplay.additionalInfo}}</li>
+                {{/if}}
+            </ul>
         </div>
+    </div>
 
-        {{!-- Đánh giá Tab --}}
-        <div id="reviews" class="tab-pane">
-            <div class="container reviews-section">
-                <h1 style="margin-left: 3.5vw;">Đánh giá danh mục</h1>
-                <div class="reviews-grid">
-                    {{!-- Left Column --}}
-                    <div class="reviews-summary">
-                        <div class="rating-card">
-                            <div class="rating-average">
-                                <span class="rating-number">{{reviews.averageRating}}</span>
-                                <span class="total-reviews">{{reviews.totalReviews}} đánh giá</span>
-                            </div>
 
-                            <div class="rating-bars">
-                                {{#each reviews.ratingCounts}}
-                                <div class="rating-bar">
-                                    <span class="star-count">{{stars}}</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: {{percentage}}%"></div>
-                                    </div>
-                                </div>
-                                {{/each}}
-                            </div>
-
-                            <div class="review-form">
-                                <h2>Viết đánh giá của riêng bạn</h2>
-                                <form action="/reviews" method="POST" enctype="multipart/form-data">
-                                    <input type="hidden" name="productCategory" value="iphone">
-
-                                    <div class="rating-select">
-                                        <span>Chất lượng*:</span>
-                                        <div class="stars">
-                                            <input type="radio" id="star1" name="rating" value="1">
-                                            <label for="star1"><i class="bi bi-star-fill"></i></label>
-                                            <input type="radio" id="star2" name="rating" value="2">
-                                            <label for="star2"><i class="bi bi-star-fill"></i></label>
-                                            <input type="radio" id="star3" name="rating" value="3">
-                                            <label for="star3"><i class="bi bi-star-fill"></i></label>
-                                            <input type="radio" id="star4" name="rating" value="4">
-                                            <label for="star4"><i class="bi bi-star-fill"></i></label>
-                                            <input type="radio" id="star5" name="rating" value="5" checked>
-                                            <label for="star5"><i class="bi bi-star-fill"></i></label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <h2>Tên của bạn:</h2>
-                                        <input type="text" name="name" placeholder="Tên của bạn" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <h2>Đánh giá:</h2>
-                                        <textarea name="comment" placeholder="Đánh giá danh mục" required></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="upload-btn">
-                                            <i class="bi bi-upload"></i> Upload image
-                                            <input type="file" name="image" accept="image/*" hidden>
-                                        </label>
-                                    </div>
-
-                                    <button type="submit" class="submit-btn">Gửi</button>
-                                </form>
-                            </div>
+    {{!-- Đánh giá Tab --}}
+    <div id="reviews" class="tab-pane">
+        <div class="container reviews-section">
+            <h1 style="margin-left: 3.5vw;">Đánh giá danh mục</h1>
+            <div class="reviews-grid">
+                {{!-- Left Column --}}
+                <div class="reviews-summary">
+                    <div class="rating-card">
+                        <div class="rating-average">
+                            <span class="rating-number">{{reviews.averageRating}}</span>
+                            <span class="total-reviews">{{reviews.totalReviews}} đánh giá</span>
                         </div>
-                    </div>
 
-                    {{!-- Right Column --}}
-                    <div class="reviews-list">
-                        {{#each reviews.list}}
-                        <div class="review-item">
-                            <div class="review-avatar">
-                                {{#if image}}
-                                <img src="{{image}}" alt="{{name}}">
-                                {{else}}
-                                <i class="bi bi-person-circle"></i>
-                                {{/if}}
-                            </div>
-                            <div class="review-content">
-                                <div class="review-header">
-                                    <h3>{{name}} <span class="review-date">{{createdAt}}</span></h3>
+                        <div class="rating-bars">
+                            {{#each reviews.ratingCounts}}
+                            <div class="rating-bar">
+                                <span class="star-count">{{stars}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: {{percentage}}%"></div>
                                 </div>
-                                <div class="review-rating">
+                            </div>
+                            {{/each}}
+                        </div>
+
+                        <div class="review-form">
+                            <h2>Viết đánh giá của riêng bạn</h2>
+                            <form action="/reviews" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="productCategory" value="iphone">
+
+                                <div class="rating-select">
+                                    <span>Chất lượng*:</span>
                                     <div class="stars">
-                                        {{#times rating}}
-                                        <i class="bi bi-star-fill"></i>
-                                        {{/times}}
+                                        <input type="radio" id="star1" name="rating" value="1">
+                                        <label for="star1"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star2" name="rating" value="2">
+                                        <label for="star2"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star3" name="rating" value="3">
+                                        <label for="star3"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star4" name="rating" value="4">
+                                        <label for="star4"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star5" name="rating" value="5" checked>
+                                        <label for="star5"><i class="bi bi-star-fill"></i></label>
                                     </div>
-                                    <p>{{comment}}</p>
                                 </div>
-                                {{#if image}}
-                                <div class="review-image">
-                                    <img src="{{image}}" alt="Review image">
+
+                                <div class="form-group">
+                                    <h2>Tên của bạn:</h2>
+                                    <input type="text" name="name" placeholder="Tên của bạn" required>
                                 </div>
-                                {{/if}}
-                            </div>
+
+                                <div class="form-group">
+                                    <h2>Đánh giá:</h2>
+                                    <textarea name="comment" placeholder="Đánh giá danh mục" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="upload-btn">
+                                        <i class="bi bi-upload"></i> Upload image
+                                        <input type="file" name="image" accept="image/*" hidden>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="submit-btn">Gửi</button>
+                            </form>
                         </div>
-                        {{/each}}
                     </div>
+                </div>
+
+                {{!-- Right Column --}}
+                <div class="reviews-list">
+                    {{#each reviews.list}}
+                    <div class="review-item">
+                        <div class="review-avatar">
+                            {{#if image}}
+                            <img src="{{image}}" alt="{{name}}">
+                            {{else}}
+                            <i class="bi bi-person-circle"></i>
+                            {{/if}}
+                        </div>
+                        <div class="review-content">
+                            <div class="review-header">
+                                <h3>{{name}} <span class="review-date">{{createdAt}}</span></h3>
+                            </div>
+                            <div class="review-rating">
+                                <div class="stars">
+                                    {{#times rating}}
+                                    <i class="bi bi-star-fill"></i>
+                                    {{/times}}
+                                </div>
+                                <p>{{comment}}</p>
+                            </div>
+                            {{#if image}}
+                            <div class="review-image">
+                                <img src="{{image}}" alt="Review image">
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -277,528 +291,80 @@
     </a>
 </div>
 
-<style>
-    :root {
-        --primary-color: #e60012;
-        --secondary-color: #007bff;
-        --text-color: #333;
-        --light-gray: #bbbbbb;
-        --border-color: #ddd;
-        --success-bg: #e8f5e9;
-        --success-text: #2e7d32;
-        --error-bg: #ffebee;
-        --error-text: #c62828;
-    }
+<link rel="stylesheet" href="../css/productDetail.css">
 
-    body {
-        background-color: #f3f4f6;
-        font-family: Arial, sans-serif;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    /* Product Detail Styles */
-    .product-detail {
-        padding: 1rem 1rem;
-        margin-bottom: 2rem;
-    }
-    
-    .product-info p.price {
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: var(--secondary-color);
-    }
-
-    .product-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
-
-    .product-image {
-        width: 30vw;
-        height: 40vh;
-        object-fit: cover;
-    }
-
-    /* Product Grid (Similar to Home) */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        margin: 20px 0;
-    }
-
-    .card-link {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    .card {
-        background: white;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-        position: relative;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-    }
-
-    .card img {
-        width: 100%;
-        height: 40vh;
-        object-fit: contain;
-        border-radius: 4px;
-        margin-bottom: 16px;
-    }
-
-    .card h2 {
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-bottom: 8px;
-    }
-
-    .card .price{
-        color: #1d4ed8;
-        font-size: 1.125rem;
-        font-weight: bold;
-        margin-bottom: 4px;
-    }
-
-    /* Stock Status */
-    .stock {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-    }
-
-    .in-stock {
-        background-color: var(--success-bg);
-        color: var(--success-text);
-    }
-
-    .out-of-stock {
-        background-color: var(--error-bg);
-        color: var(--error-text);
-    }
-
-    /* Specifications and Description */
-    .specs,
-    .description {
-        margin: 2rem 0;
-    }
-
-    .specs h2,
-    .description h2 {
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-    }
-
-    .specs ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .specs li {
-        display: flex;
-        padding: 0.5rem 0;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .spec-label {
-        flex: 0 0 120px;
-        color: #666;
-    }
-
-    .description p {
-        line-height: 1.6;
-    }
-
-    /* Buttons */
-    .actions {
-        display: flex;
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-
-    .button {
-        padding: 1rem 2rem;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .button.primary {
-        background-color: var(--primary-color);
-        color: rgb(255, 255, 255);
-    }
-
-    .button.primary:hover {
-        background-color: #9e3942;
-    }
-
-    .button.secondary {
-        background-color: var(--light-gray);
-        color: var(--text-color);
-        border: 1px solid var(--border-color);
-    }
-
-    .button.secondary:hover {
-        background-color: darken(var(--light-gray), 5%);
-    }
-
-    /* Fixed Buttons */
-    .fixed-buttons {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .fixed-buttons a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #808080;
-        color: #000;
-        text-decoration: none;
-        font-size: 24px;
-        transition: background-color 0.3s;
-    }
-
-    .fixed-buttons a:hover {
-        background-color: #696969;
-    }
-
-    .fixed-buttons a i {
-        margin: 0;
-    }
-
-    @media (max-width: 1024px) {
-        .grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-        .grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    /* Tabs Styles */
-    .tabs {
-        display: flex;
-        border-bottom: 1px solid var(--border-color);
-        margin-bottom: 20px;
-    }
-
-    .tab-button {
-        padding: 10px 20px;
-        border: none;
-        background: none;
-        cursor: pointer;
-        font-size: 16px;
-        position: relative;
-    }
-
-    .tab-button.active {
-        color: var(--primary-color);
-    }
-
-    .tab-button.active::after {
-        content: '';
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--primary-color);
-    }
-
-    .tab-content {
-        padding: 20px 0;
-    }
-
-    .tab-pane {
-        display: none;
-    }
-
-    .tab-pane.active {
-        display: block;
-    }
-
-    /* Description Tab Styles */
-    .description-content img {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    /* Specs Tab Styles */
-    .specs-content ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .specs-content li {
-        display: flex;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    /* Reviews Section Styles */
-    .reviews-section {
-        padding: 1rem 0;
-        background-color: #fff;
-    }
-
-    .reviews-grid {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-
-    /* Rating Card Styles */
-    .rating-card {
-        background: #fff;
-        border-radius: 8px;
-        padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .rating-average {
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .rating-number {
-        font-size: 3rem;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .total-reviews {
-        display: block;
-        color: #666;
-        margin-top: 0.5rem;
-    }
-
-    /* Rating Bars */
-    .rating-bars {
-        margin: 2rem 0;
-    }
-
-    .rating-bar {
-        display: flex;
-        align-items: center;
-        margin: 0.5rem 0;
-    }
-
-    .star-count {
-        width: 2rem;
-        text-align: right;
-        margin-right: 1rem;
-    }
-
-    .progress {
-        flex: 1;
-        height: 8px;
-        background: #eee;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .progress-bar {
-        height: 100%;
-        background: #f9bc00;
-        transition: width 0.3s ease;
-    }
-
-
-    .review-form {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid #eee;
-    }
-
-    .review-form h2 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-    }
-
-
-    .rating-select .stars {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-    }
-
-    .rating-select .stars input {
-        display: none;
-    }
-
-    .rating-select .stars label {
-        cursor: pointer;
-        padding: 0 0.2rem;
-        color: #ccc;
-    }
-
-    .rating-select .stars label:hover,
-    .rating-select .stars label:hover~label {
-        color: #f9bc00;
-    }
-
-    .rating-select .stars input:checked~label {
-        color: #f9bc00;
-    }
-
-    .form-group {
-        margin-bottom: 1rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 1rem;
-    }
-
-    .upload-btn {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        background: #f5f5f5;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .submit-btn {
-        width: 100%;
-        padding: 0.8rem;
-        background: #0071e3;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-
-    .submit-btn:hover {
-        background: #0077ed;
-    }
-
-    /* Reviews List */
-    .review-item {
-        display: flex;
-        padding: 1rem;
-        border-bottom: 1px solid #eee;
-    }
-
-    .review-avatar {
-        width: 36px;
-        height: 36px;
-        margin-right: 0.8rem;
-    }
-
-    .review-avatar img,
-    .review-avatar i {
-        width: 80%;
-        height: 80%;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .review-avatar i {
-        font-size: 36px;
-        color: #ccc;
-    }
-
-    .review-content {
-        flex: 1;
-    }
-
-    .review-header {
-        margin-bottom: 0.5rem;
-    }
-
-    .review-date {
-        color: #666;
-        font-size: 0.7rem;
-        font-weight: normal;
-    }
-
-    .review-rating .stars {
-        margin-left: 0;
-        margin-bottom: 0.5rem;
-    }
-
-    .review-rating p {
-        margin: 0;
-    }
-
-    .review-image img {
-        max-width: 150px;
-        border-radius: 4px;
-        margin-top: 0.8rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .reviews-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .review-item {
-            padding: 0.8rem;
-        }
-    }
-</style>
-
+{{!-- Script xử lý tabs và variants --}}
 <script>
-    // Thêm vào cuối file hoặc trong một file JS riêng
+    // Script xử lý tabs
     document.addEventListener('DOMContentLoaded', function () {
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabPanes = document.querySelectorAll('.tab-pane');
 
+        // Xử lý chuyển tab
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons and panes
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabPanes.forEach(pane => pane.classList.remove('active'));
-
-                // Add active class to clicked button and corresponding pane
                 button.classList.add('active');
                 const tabId = button.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
             });
         });
+
+        // Xử lý variants
+        const variants = {{{ variants }}}; // Nhận dữ liệu variants từ server
+    const storageButtons = document.querySelectorAll('.storage-btn');
+    const colorButtons = document.querySelectorAll('.color-btn');
+    const productImage = document.getElementById('productImage');
+    const productPrice = document.getElementById('productPrice');
+    const stockStatus = document.querySelector('.stock');
+
+    let selectedStorage = '';
+    let selectedColor = '';
+
+    function updateProduct() {
+        const variant = variants.find(v =>
+            v.storage === selectedStorage &&
+            v.color === selectedColor
+        );
+
+        if (variant) {
+            productImage.src = variant.image;
+            productPrice.textContent = variant.price.toLocaleString() + 'đ';
+
+            // Cập nhật trạng thái còn hàng
+            if (variant.stock > 0) {
+                stockStatus.className = 'stock in-stock';
+                stockStatus.textContent = 'Còn hàng';
+            } else {
+                stockStatus.className = 'stock out-of-stock';
+                stockStatus.textContent = 'Hết hàng';
+            }
+        }
+    }
+
+    // Xử lý sự kiện click cho nút chọn bộ nhớ
+    storageButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            storageButtons.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedStorage = btn.dataset.storage;
+            updateProduct();
+        });
     });
 
+    // Xử lý sự kiện click cho nút chọn màu
+    colorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            colorButtons.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedColor = btn.dataset.color;
+            updateProduct();
+        });
+    });
+
+    // Tự động chọn option đầu tiên
+    if (storageButtons.length) storageButtons[0].click();
+    if (colorButtons.length) colorButtons[0].click();
+    });
 </script>
