@@ -132,7 +132,7 @@
     <div class="tab-content">
 
         <!-- Tab Mô tả: Hiển thị các hình ảnh theo hàng dọc và mô tả chung -->
-        <div id="mo-ta" class="tab-pane active">
+        <div id="description" class="tab-pane active">
             <div class="description-images">
                 {{#each images}}
                 <img src="{{this}}" alt="{{../name}}" class="img-fluid mb-3" style="max-width: 100%; display: block;" />
@@ -142,32 +142,32 @@
 
 
         <!-- Tab Thông số kỹ thuật: Hiển thị các thông số chi tiết -->
-        <div id="thong-so" class="tab-pane">
+        <div id="specs" class="tab-pane">
             <h2>Thông số kỹ thuật</h2>
             <ul class="specs-list" style="list-style: none; padding: 0;">
-                {{#if specsDisplay.screen}}
-                <li><strong>Màn hình:</strong> {{specsDisplay.screen}}</li>
+                {{#if specsDisplay.items.screen}}
+                <li><strong>Màn hình:</strong> {{specsDisplay.items.screen}}</li>
                 {{/if}}
-                {{#if specsDisplay.camera}}
-                <li><strong>Camera:</strong> {{specsDisplay.camera}}</li>
+                {{#if specsDisplay.items.camera}}
+                <li><strong>Camera:</strong> {{specsDisplay.items.camera}}</li>
                 {{/if}}
-                {{#if specsDisplay.cpu}}
-                <li><strong>CPU:</strong> {{specsDisplay.cpu}}</li>
+                {{#if specsDisplay.items.cpu}}
+                <li><strong>CPU:</strong> {{specsDisplay.items.cpu}}</li>
                 {{/if}}
-                {{#if specsDisplay.sim}}
-                <li><strong>SIM:</strong> {{specsDisplay.sim}}</li>
+                {{#if specsDisplay.items.sim}}
+                <li><strong>SIM:</strong> {{specsDisplay.items.sim}}</li>
                 {{/if}}
-                {{#if specsDisplay.connectivity}}
-                <li><strong>Kết nối:</strong> {{specsDisplay.connectivity}}</li>
+                {{#if specsDisplay.items.connectivity}}
+                <li><strong>Kết nối:</strong> {{specsDisplay.items.connectivity}}</li>
                 {{/if}}
-                {{#if specsDisplay.designWeight}}
-                <li><strong>Thiết kế và trọng lượng:</strong> {{specsDisplay.designWeight}}</li>
+                {{#if specsDisplay.items.designWeight}}
+                <li><strong>Thiết kế và trọng lượng:</strong> {{specsDisplay.items.designWeight}}</li>
                 {{/if}}
-                {{#if specsDisplay.batteryCharging}}
-                <li><strong>Pin và sạc:</strong> {{specsDisplay.batteryCharging}}</li>
+                {{#if specsDisplay.items.batteryCharging}}
+                <li><strong>Pin và sạc:</strong> {{specsDisplay.items.batteryCharging}}</li>
                 {{/if}}
-                {{#if specsDisplay.additionalInfo}}
-                <li><strong>Thông tin khác:</strong> {{specsDisplay.additionalInfo}}</li>
+                {{#if specsDisplay.items.additionalInfo}}
+                <li><strong>Thông tin khác:</strong> {{specsDisplay.items.additionalInfo}}</li>
                 {{/if}}
             </ul>
         </div>
@@ -311,8 +311,8 @@
             });
         });
 
-        // Xử lý variants
-        const variants = {{{ variants }}}; // Nhận dữ liệu variants từ server
+    // Xử lý variants
+    const variants = {{{ variants }}}; // Nhận dữ liệu variants từ server
     const storageButtons = document.querySelectorAll('.storage-btn');
     const colorButtons = document.querySelectorAll('.color-btn');
     const productImage = document.getElementById('productImage');

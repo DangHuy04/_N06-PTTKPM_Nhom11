@@ -277,7 +277,40 @@ body {
     margin-bottom: 20px;
 }
 
-/* Specs Tab Styles */
+/* ====== Styles cho Tab Thông số kỹ thuật ====== */
+#specs h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+#specs .specs-list {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    background-color: #fff;
+}
+
+#specs .specs-list li {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#specs .specs-list li strong {
+    color: #555;
+    font-weight: 600;
+}
+
+#specs .specs-list li span {
+    color: #333;
+}
+
+#specs .specs-list li:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
 .specs-content ul {
     list-style: none;
     padding: 0;
