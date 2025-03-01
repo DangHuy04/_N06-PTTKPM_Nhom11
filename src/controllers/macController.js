@@ -1,10 +1,25 @@
 import Product from "../model/Products.js";
+import Review from "../model/Reviews.js";
+
 
 class macController {
     async index(req, res) {
         try {
             // Lấy tất cả sản phẩm Mac từ database
             const macs = await Product.find({ category: "mac" });
+
+            // Lấy đánh giá cho category mac
+            const reviews = await Review.find({ category: "mac" }).sort({ createdAt: -1 });
+
+            // Tính toán thống kê đánh giá
+            const totalReviews = reviews.length;
+            const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / totalReviews || 0;
+
+            // Tính toán số lượng cho mỗi rating
+            const ratingCounts = Array(5).fill(0);
+            reviews.forEach(review => {
+                ratingCounts[review.rating - 1]++;
+            });
 
             // Hàm xử lý danh sách sản phẩm
             const formatProducts = (products) =>
@@ -55,105 +70,66 @@ class macController {
                         }
                     ],
                     reviews: {
-                        averageRating: 5,
-                        totalReviews: 7,
-                        ratingCounts: [
-                            { stars: 5, percentage: 100, count: 7 },
-                            { stars: 4, percentage: 0, count: 0 },
-                            { stars: 3, percentage: 0, count: 0 },
-                            { stars: 2, percentage: 0, count: 0 },
-                            { stars: 1, percentage: 0, count: 0 }
-                        ],
-                        list: [
-                            {
-                                id: 1,
-                                name: "khánh",
-                                rating: 5,
-                                comment: "ngon",
-                                createdAt: "2023-09-21",
-                                image: null
-                            },
-                            {
-                                id: 2,
-                                name: "Nguyenvanphuong",
-                                rating: 5,
-                                comment: "Ok",
-                                createdAt: "2023-07-26",
-                                image: null
-                            },
-                            {
-                                id: 3,
-                                name: "Vu thi trang",
-                                rating: 5,
-                                comment: "Tot",
-                                createdAt: "2023-07-12",
-                                image: null
-                            },
-                            {
-                                id: 4,
-                                name: "Huệ Trần",
-                                rating: 5,
-                                comment: "mac sẵn hàng quá",
-                                createdAt: "2023-06-01",
-                                image: null
-                            },
-                            {
-                                id: 5,
-                                name: "minh",
-                                rating: 5,
-                                comment: "dq",
-                                createdAt: "2023-05-30",
-                                image: null
-                            },
-                            {
-                                id: 6,
-                                name: "Thành",
-                                rating: 5,
-                                comment: "good",
-                                createdAt: "2023-05-30",
-                                image: null
-                            },
-                            {
-                                id: 7,
-                                name: "Uyên",
-                                rating: 5,
-                                comment: "Sản phẩm các dòng mac còn hàng nhiều",
-                                createdAt: "2023-04-24",
-                                image: null
-                            }
-                        ]
+                        averageRating: averageRating.toFixed(1),
+                        totalReviews: totalReviews,
+                        ratingCounts: ratingCounts.map((count, index) => ({
+                            stars: index + 1,
+                            percentage: (count / totalReviews * 100) || 0,
+                            count: count
+                        })),
+                        list: reviews.map(review => ({
+                            id: review._id,
+                            name: review.name,
+                            rating: review.rating,
+                            comment: review.comment,
+                            createdAt: review.createdAt.toLocaleDateString(),
+                            image: review.image
+                        }))
                     }
-                }
+                },
+                user: req.session.user // Truyền thông tin user để kiểm tra đăng nhập
             });
         } catch (error) {
+            console.error('Error:', error);
             res.status(500).send("Lỗi khi lấy dữ liệu sản phẩm");
         }
     }
 
-    // Thêm method để xử lý post review mới
+    // Phương thức xử lý thêm đánh giá mới
     async addReview(req, res) {
         try {
-            const { name, rating, comment } = req.body;
-            const image = req.file ? `/uploads/${req.file.filename}` : null;
+            if (!req.session.user) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Vui lòng đăng nhập để đánh giá'
+                });
+            }
 
-            // Tạo review mới với dữ liệu từ form
-            const newReview = {
-                id: Date.now(), // Tạm thời dùng timestamp làm id
-                name,
-                rating: parseInt(rating),
-                comment,
-                createdAt: new Date().toISOString(),
-                image
-            };
+            const review = new Review({
+                category: 'iphone',
+                userId: req.session.user.id,
+                name: req.session.user.name,
+                rating: parseInt(req.body.rating),
+                comment: req.body.comment,
+                image: req.file ? `/uploads/reviews/${req.file.filename}` : null
+            });
 
-            // Trong thực tế, bạn sẽ lưu review vào database
-            // Ở đây tôi return success response
+            await review.save();
+
             res.json({
                 success: true,
-                review: newReview
+                review: {
+                    id: review._id,
+                    name: review.name,
+                    rating: review.rating,
+                    comment: review.comment,
+                    createdAt: review.createdAt.toLocaleDateString(),
+                    image: review.image
+                }
             });
 
         } catch (error) {
+            console.error('Error adding review:', error);
             res.status(500).json({
                 success: false,
                 message: 'Có lỗi xảy ra khi thêm đánh giá'

@@ -9,6 +9,8 @@ import logoutRouter from './logout.js';
 import profileRouter from './profileRouter.js';
 import searchRoute from "./searchRoute.js";
 import breadcrumbRouter from "./breadcrumbRoute.js";
+import reviewRoutes from './reviewRouter.js';
+
 
 function route(app) {
     app.use("/", homeRouter);
@@ -23,6 +25,8 @@ function route(app) {
     app.use('/search/search-suggestions', searchRoute);
     app.use("/", productRouter);
     app.use("/breadcrumb", breadcrumbRouter);
+    app.use('/reviews', reviewRoutes);
+
 }
 
 export default route;

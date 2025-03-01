@@ -6,6 +6,7 @@ import connectDB from './config/db.js';
 import { create } from 'express-handlebars';
 import route from './routes/index.js';
 import session from 'express-session';
+import multer from 'multer';
 
 const app = express()
 const port = 3000
@@ -51,6 +52,19 @@ const hbs = create({
     allowProtoMethodsByDefault: true,
   }
 });
+
+// Cấu hình multer
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'public/uploads/reviews')
+  },
+  filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname)
+  }
+});
+const upload = multer({ storage: storage });
+app.locals.upload = upload;
+
 
 // Set up Handlebars làm template engine
 app.engine('handlebars', hbs.engine);

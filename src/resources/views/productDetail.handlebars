@@ -174,19 +174,18 @@
     </div>
 
 
-    {{!-- Đánh giá Tab --}}
     <div id="reviews" class="tab-pane">
+        {{!-- productDetail.handlebars --}}
         <div class="container reviews-section">
-            <h1 style="margin-left: 3.5vw;">Đánh giá danh mục</h1>
+            <h1 style="margin-left: 3.5vw;">Đánh giá sản phẩm</h1>
             <div class="reviews-grid">
-                {{!-- Left Column --}}
+                <!-- Cột bên trái: Tổng hợp đánh giá và form -->
                 <div class="reviews-summary">
                     <div class="rating-card">
                         <div class="rating-average">
                             <span class="rating-number">{{reviews.averageRating}}</span>
                             <span class="total-reviews">{{reviews.totalReviews}} đánh giá</span>
                         </div>
-
                         <div class="rating-bars">
                             {{#each reviews.ratingCounts}}
                             <div class="rating-bar">
@@ -197,58 +196,74 @@
                             </div>
                             {{/each}}
                         </div>
+                    </div>
 
-                        <div class="review-form">
-                            <h2>Viết đánh giá của riêng bạn</h2>
-                            <form action="/reviews" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="productCategory" value="iphone">
+                    <div class="review-form">
+                        <h2>Viết đánh giá của bạn</h2>
+                        {{#if user}}
+                        <form id="reviewForm" action="/reviews" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="category" value="{{category}}">
+                            <input type="hidden" name="productId" value="{{productId}}">
 
-                                <div class="rating-select">
-                                    <span>Chất lượng*:</span>
-                                    <div class="stars">
-                                        <input type="radio" id="star1" name="rating" value="1">
-                                        <label for="star1"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star2" name="rating" value="2">
-                                        <label for="star2"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star3" name="rating" value="3">
-                                        <label for="star3"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star4" name="rating" value="4">
-                                        <label for="star4"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star5" name="rating" value="5" checked>
-                                        <label for="star5"><i class="bi bi-star-fill"></i></label>
-                                    </div>
+                            <!-- Thanh rating cho người dùng -->
+                            <div class="rating-select">
+                                <span>Chất lượng*:</span>
+                                <div class="stars">
+                                    <!-- Đặt star5 trước star1 trong DOM -->
+                                    <input type="radio" id="star5" name="rating" value="5" checked>
+                                    <label for="star5"><i class="bi bi-star-fill"></i></label>
+
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4"><i class="bi bi-star-fill"></i></label>
+
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3"><i class="bi bi-star-fill"></i></label>
+
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2"><i class="bi bi-star-fill"></i></label>
+
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1"><i class="bi bi-star-fill"></i></label>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <h2>Tên của bạn:</h2>
-                                    <input type="text" name="name" placeholder="Tên của bạn" required>
+                            <div class="form-group">
+                                <h2>Tên của bạn:</h2>
+                                <input type="text" name="name" value="{{user.username}}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <h2>Nội dung đánh giá:</h2>
+                                <textarea name="comment" placeholder="Nhập đánh giá của bạn" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="upload-btn">
+                                    <i class="bi bi-upload"></i> Upload hình ảnh
+                                    <input type="file" id="reviewImageInput" name="image" accept="image/*" hidden>
+                                </label>
+                                <!-- Khu vực preview ảnh -->
+                                <div class="image-preview-container">
+                                    <img id="imagePreview" alt="Preview" style="display: none;">
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <h2>Đánh giá:</h2>
-                                    <textarea name="comment" placeholder="Đánh giá danh mục" required></textarea>
-                                </div>
+                            <button type="submit" class="submit-btn">Gửi</button>
+                        </form>
 
-                                <div class="form-group">
-                                    <label class="upload-btn">
-                                        <i class="bi bi-upload"></i> Upload image
-                                        <input type="file" name="image" accept="image/*" hidden>
-                                    </label>
-                                </div>
-
-                                <button type="submit" class="submit-btn">Gửi</button>
-                            </form>
-                        </div>
+                        {{else}}
+                        <p>Vui lòng <a href="/login">đăng nhập</a> để đánh giá</p>
+                        {{/if}}
                     </div>
                 </div>
 
-                {{!-- Right Column --}}
+                <!-- Cột bên phải: Danh sách đánh giá -->
                 <div class="reviews-list">
                     {{#each reviews.list}}
                     <div class="review-item">
                         <div class="review-avatar">
-                            {{#if image}}
-                            <img src="{{image}}" alt="{{name}}">
+                            {{#if avatar}}
+                            <img src="{{avatar}}" alt="{{name}}">
                             {{else}}
                             <i class="bi bi-person-circle"></i>
                             {{/if}}
@@ -276,8 +291,8 @@
                 </div>
             </div>
         </div>
+
     </div>
-</div>
 </div>
 
 
@@ -295,12 +310,10 @@
 
 {{!-- Script xử lý tabs và variants --}}
 <script>
-    // Script xử lý tabs
     document.addEventListener('DOMContentLoaded', function () {
+        /* --- Tab Switching và Variants --- */
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabPanes = document.querySelectorAll('.tab-pane');
-
-        // Xử lý chuyển tab
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -311,8 +324,7 @@
             });
         });
 
-    // Xử lý variants
-    const variants = {{{ variants }}}; // Nhận dữ liệu variants từ server
+        const variants = {{{ variants }}}; // Dữ liệu variants từ server
     const storageButtons = document.querySelectorAll('.storage-btn');
     const colorButtons = document.querySelectorAll('.color-btn');
     const productImage = document.getElementById('productImage');
@@ -323,16 +335,10 @@
     let selectedColor = '';
 
     function updateProduct() {
-        const variant = variants.find(v =>
-            v.storage === selectedStorage &&
-            v.color === selectedColor
-        );
-
+        const variant = variants.find(v => v.storage === selectedStorage && v.color === selectedColor);
         if (variant) {
             productImage.src = variant.image;
             productPrice.textContent = variant.price.toLocaleString() + 'đ';
-
-            // Cập nhật trạng thái còn hàng
             if (variant.stock > 0) {
                 stockStatus.className = 'stock in-stock';
                 stockStatus.textContent = 'Còn hàng';
@@ -343,7 +349,6 @@
         }
     }
 
-    // Xử lý sự kiện click cho nút chọn bộ nhớ
     storageButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             storageButtons.forEach(b => b.classList.remove('selected'));
@@ -353,7 +358,6 @@
         });
     });
 
-    // Xử lý sự kiện click cho nút chọn màu
     colorButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             colorButtons.forEach(b => b.classList.remove('selected'));
@@ -363,8 +367,82 @@
         });
     });
 
-    // Tự động chọn option đầu tiên
     if (storageButtons.length) storageButtons[0].click();
     if (colorButtons.length) colorButtons[0].click();
-    });
+
+    /* --- Review Form: Rating Preview và AJAX Submission --- */
+    const reviewForm = document.getElementById('reviewForm');
+    if (reviewForm) {
+        // 2.1. Preview ảnh
+        const imageInput = document.getElementById('reviewImageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        if (imageInput && imagePreview) {
+            imageInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (!file) {
+                    imagePreview.style.display = 'none';
+                    imagePreview.src = '';
+                    return;
+                }
+                const url = URL.createObjectURL(file);
+                imagePreview.src = url;
+                imagePreview.style.display = 'block';
+            });
+        }
+
+        // 2.2. Gửi form bằng AJAX
+        reviewForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(reviewForm);
+            try {
+                const response = await fetch(reviewForm.action, {
+                    method: reviewForm.method,
+                    body: formData
+                });
+                const result = await response.json();
+                if (result.success) {
+                    addNewReview(result.review);
+                    reviewForm.reset();
+                    // Ẩn preview ảnh sau khi reset
+                    if (imagePreview) {
+                        imagePreview.style.display = 'none';
+                        imagePreview.src = '';
+                    }
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                alert('Có lỗi xảy ra khi gửi đánh giá');
+            }
+        });
+    }
+
+    // Hàm thêm review mới vào danh sách (bên phải)
+    function addNewReview(review) {
+        const reviewsList = document.querySelector('.reviews-list');
+        if (!reviewsList) return;
+        const reviewElement = document.createElement('div');
+        reviewElement.className = 'review-item';
+        reviewElement.innerHTML = `
+      <div class="review-avatar">
+        ${review.avatar ? `<img src="${review.avatar}" alt="${review.name}">` : '<i class="bi bi-person-circle"></i>'}
+      </div>
+      <div class="review-content">
+        <div class="review-header">
+          <h3>${review.name} <span class="review-date">${new Date().toLocaleDateString()}</span></h3>
+        </div>
+        <div class="review-rating">
+          <div class="stars">
+            <!-- Hiển thị sao đã chọn, ví dụ ★ x n -->
+            ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+          </div>
+          <p>${review.comment}</p>
+        </div>
+        ${review.image ? `<div class="review-image"><img src="${review.image}" alt="Review image"></div>` : ''}
+      </div>
+    `;
+        reviewsList.insertBefore(reviewElement, reviewsList.firstChild);
+    }
+});
 </script>
