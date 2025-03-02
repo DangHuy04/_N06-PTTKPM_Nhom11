@@ -1,0 +1,134 @@
+{{!--Cart--}}
+<div class="navbar">
+    <div class="container d-flex justify-content-between align-items-center" style="margin-top: 4rem">
+        <a href="/" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            &nbsp;
+            Về trang chủ 
+        </a>
+        <p class="cart-title" style="color: #000;">Giỏ hàng của {{user.username}}</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card p-3" style="border-radius: 12px 12px 0 0">
+        <div class="row mt-5">
+            <div class="col-3">
+                <img src="{{product.image}}" alt="{{product.name}}" class="product-image">
+            </div>
+            <div class="col-9">
+                <div class="d-flex justify-content-between">
+                    <b class="mb-1">{{product.name}}</b>
+                    <span class="price">{{product.price}}</span>
+                </div>
+                <p class="text-muted mb-1">Màu sắc: {{product.specsDisplay.items.color}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="#" class="remove-link">× Xoá</a>
+                    </div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 mb-3">
+            <div class="col-md-6">
+                <span class="mb-0"><b>Tạm tính</b> (1 sản phẩm):</span>
+            </div>
+            <span class="col-md-6 price">30.990.000₫</span>
+        </div>
+    </div>
+
+    <div class="card p-3">
+        <b class="section-title">Thông tin khách hàng</b>
+        <div>
+            <div class="radio-container">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="male" checked>
+                    <label class="form-check-label" for="male">Anh</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female">
+                    <label class="form-check-label" for="female">Chị</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="fullName" class="form-label">Họ và Tên</label>
+                <input type="text" class="form-control" id="fullName" style="margin-top: -16px;">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="number" class="form-label">Số điện thoại</label>
+                <input type="tel" class="form-control" id="number" style="margin-top: -16px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-3">
+        <b class="section-title">Hình thức nhận hàng</b>
+        <div>
+            <div class="radio-container">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="deliveryType" id="homeDelivery" checked>
+                    <label class="form-check-label" for="homeDelivery">Giao tận nơi</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="deliveryType" id="storePickup">
+                    <label class="form-check-label" for="storePickup">Nhận tại cửa hàng</label>
+                </div>
+            </div>
+        </div>
+        <div class="bg-light mb-3 p-3 rounded">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <select class="form-select" style="font-size: 14px;">
+                        <option selected>Chọn tỉnh, thành phố</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" style="font-size: 14px;">
+                        <option selected disabled></option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <input class="form-control address-input" placeholder="Địa chỉ cụ thể" style="font-size: 14px; height: 50px;">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="note-input" class="form-label" style="font-size: 12px;">Nhập ghi chú (nếu có)</label>
+            <input class="form-control note-input" style="margin-top: -16px;">
+        </div>
+    </div>
+    <div class="card p-3 mb-5" style="border-radius: 0 0 12px 12px;">
+        <div class="mb-3">
+            <button class="btn btn-coupon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                    <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
+                    <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
+                </svg>
+                <span class="ms-2">Sử dụng mã giảm giá</span>
+                &nbsp;&nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down ms-auto" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-5 total-cost">
+            <b class="section-title">Tổng tiền:</b>
+            <span class="total-price">30.990.000₫</span>
+        </div>
+        <button class="checkout-btn">Tiến hành đặt hàng</button>
+        
+        <p class="payment-info text-center" style="color: #000;">Bạn có thể lựa chọn các hình thức thanh toán ở bước sau</p>
+    </div>
+</div>
+<link rel="stylesheet" href="../css/cart.css">
+
+

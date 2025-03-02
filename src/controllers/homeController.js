@@ -38,6 +38,7 @@ class homeController {
             res.render("home", {
                 banner: "../img/banner-footer.png",
                 layout: "home",
+                title:  "Apple Store",
                 banners: [
                     "../img/banner_home_1.png",
                     "../img/banner_home_2.png",

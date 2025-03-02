@@ -9,6 +9,7 @@ import logoutRouter from './logout.js';
 import profileRouter from './profileRouter.js';
 import searchRoute from "./searchRoute.js";
 import breadcrumbRouter from "./breadcrumbRoute.js";
+import cartRouter from "./cartRouter.js"
 
 function route(app) {
     app.use("/", homeRouter);
@@ -19,6 +20,7 @@ function route(app) {
     app.use("/login", loginRouter);
     app.use('/logout', logoutRouter);
     app.use('/profile', profileRouter);
+    app.use('/cart', cartRouter);
     app.use("/search", searchRoute);
     app.use('/search/search-suggestions', searchRoute);
     app.use("/", productRouter);
