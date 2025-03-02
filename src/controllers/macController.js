@@ -80,6 +80,7 @@ class macController {
                         list: reviews.map(review => ({
                             id: review._id,
                             name: review.name,
+                            avatar: review.avatar, // thêm avatar vào mapping
                             rating: review.rating,
                             comment: review.comment,
                             createdAt: review.createdAt.toLocaleDateString(),
@@ -110,6 +111,7 @@ class macController {
                 category: 'mac',
                 userId: req.session.user.id,
                 name: req.session.user.name,
+                avatar: req.session.user.avatar || '', // thêm avatar vào review
                 rating: parseInt(req.body.rating),
                 comment: req.body.comment,
                 image: req.file ? `/uploads/reviews/${req.file.filename}` : null
@@ -122,6 +124,7 @@ class macController {
                 review: {
                     id: review._id,
                     name: review.name,
+                    avatar: review.avatar, // truyền avatar mới lưu
                     rating: review.rating,
                     comment: review.comment,
                     createdAt: review.createdAt.toLocaleDateString(),

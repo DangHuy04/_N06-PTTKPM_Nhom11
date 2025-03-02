@@ -79,6 +79,7 @@ class iphoneController {
             list: reviews.map(review => ({
               id: review._id,
               name: review.name,
+              avatar: review.avatar, // thêm avatar vào mapping
               rating: review.rating,
               comment: review.comment,
               createdAt: review.createdAt.toLocaleDateString(),
@@ -86,8 +87,8 @@ class iphoneController {
             }))
           }
         },
-        category: "iphone", // Truyền biến category vào view để tránh lỗi rỗng
-        user: req.session.user // Truyền thông tin user để kiểm tra đăng nhập
+        category: "iphone", // Đảm bảo truyền biến category
+        user: req.session.user // Truyền thông tin user
       });
     } catch (error) {
       console.error('Error:', error);
@@ -105,10 +106,12 @@ class iphoneController {
         });
       }
 
+      // Tạo mới review, thêm avatar từ session nếu có
       const review = new Review({
         category: 'iphone',
         userId: req.session.user.id,
         name: req.session.user.name,
+        avatar: req.session.user.avatar || '', // thêm avatar vào review
         rating: parseInt(req.body.rating),
         comment: req.body.comment,
         image: req.file ? `/uploads/reviews/${req.file.filename}` : null
@@ -121,13 +124,13 @@ class iphoneController {
         review: {
           id: review._id,
           name: review.name,
+          avatar: review.avatar, // truyền avatar mới lưu
           rating: review.rating,
           comment: review.comment,
           createdAt: review.createdAt.toLocaleDateString(),
           image: review.image
         }
       });
-
     } catch (error) {
       console.error('Error adding review:', error);
       res.status(500).json({
