@@ -87,6 +87,7 @@ class macController {
                         }))
                     }
                 },
+                category: "mac",
                 user: req.session.user // Truyền thông tin user để kiểm tra đăng nhập
             });
         } catch (error) {
@@ -106,7 +107,7 @@ class macController {
             }
 
             const review = new Review({
-                category: 'iphone',
+                category: 'mac',
                 userId: req.session.user.id,
                 name: req.session.user.name,
                 rating: parseInt(req.body.rating),

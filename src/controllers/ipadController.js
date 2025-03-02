@@ -7,7 +7,7 @@ class ipadController {
             // Lấy tất cả sản phẩm iPad từ database
             const ipads = await Product.find({ category: "ipad" });
 
-            // Lấy đánh giá cho category iPhone
+            // Lấy đánh giá cho category iPad
             const reviews = await Review.find({ category: "ipad" }).sort({ createdAt: -1 });
 
             // Tính toán thống kê đánh giá
@@ -87,6 +87,7 @@ class ipadController {
                         }))
                     }
                 },
+                category: "ipad",
                 user: req.session.user // Truyền thông tin user để kiểm tra đăng nhập
             });
         } catch (error) {
@@ -105,7 +106,7 @@ class ipadController {
             }
 
             const review = new Review({
-                category: 'iphone',
+                category: 'ipad',
                 userId: req.session.user.id,
                 name: req.session.user.name,
                 rating: parseInt(req.body.rating),
