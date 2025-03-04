@@ -22,7 +22,6 @@ function route(app) {
     app.use('/profile', profileRouter);
     app.use('/cart', cartRouter);
     app.use("/search", searchRoute);
-    app.use('/search/search-suggestions', searchRoute);
     app.use("/", productRouter);
     app.use("/breadcrumb", breadcrumbRouter);
 }

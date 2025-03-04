@@ -4,11 +4,10 @@ class ProductController {
     async show(req, res) {
         try {
             const product = await Product.findOne({ productId: req.params.productID });
-
             if (!product) {
                 return res.status(404).send("Sản phẩm không tồn tại");
             }
-
+            const prodID = product._id;
             // Tạo đối tượng specsDisplay với đầy đủ các trường thông số kỹ thuật
             const specsDisplay = {
                 type: product.category, // hoặc đặt kiểu riêng nếu cần
@@ -59,6 +58,7 @@ class ProductController {
                 specsDisplay: specsDisplay,
                 products: formattedRelatedProducts,
                 variants: JSON.stringify(product.variants),
+                prodID,
                 images: product.images // đảm bảo truyền mảng images để hiển thị trong tab Mô tả
             });
 

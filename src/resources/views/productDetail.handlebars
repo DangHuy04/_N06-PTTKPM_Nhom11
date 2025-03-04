@@ -86,7 +86,7 @@
             <!-- Nút mua hàng -->
             <div class="actions">
                 <button class="button primary">Mua ngay</button>
-                <button class="button secondary">Thêm vào giỏ hàng</button>
+                <button onclick="addToCart('{{prodID}}')" class="button secondary">Thêm vào giỏ hàng</button>
             </div>
         </div>
     </div>
@@ -101,7 +101,7 @@
     </b>
     <div class="grid">
         {{#each products}}
-        <a href="/{{productId}}" class="card-link">
+        <a href="/{{prodID}}" class="card-link">
             <div class="card">
                 {{#if discount}}
                 <div class="badge discount">{{discount}}</div>
@@ -367,4 +367,23 @@
     if (storageButtons.length) storageButtons[0].click();
     if (colorButtons.length) colorButtons[0].click();
     });
+
+    // Xử lí khi nhấn nút thêm vào giỏ hàng
+    function addToCart(prodID) {
+        fetch('/cart/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prodID, quantity: 1 })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.succes) {
+                alert("Thêm vào giỏ hàng thành công");
+
+            } else {
+                alert("Lỗi: " + data.message);
+            }
+        })
+        .catch(error => console.error("Lỗi: ", error));
+    }
 </script>
