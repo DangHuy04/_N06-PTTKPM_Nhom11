@@ -10,8 +10,8 @@ import profileRouter from './profileRouter.js';
 import searchRoute from "./searchRoute.js";
 import breadcrumbRouter from "./breadcrumbRoute.js";
 import cartRouter from "./cartRouter.js"
-import reviewRoutes from './reviewRouter.js';
-
+import reviewRouter from './reviewRouter.js';
+import checkAuth from './checkAuth.js';
 
 function route(app) {
     app.use("/", homeRouter);
@@ -24,10 +24,10 @@ function route(app) {
     app.use('/profile', profileRouter);
     app.use('/cart', cartRouter);
     app.use("/search", searchRoute);
-    app.use("/", productRouter);
+    app.use("/checkauth",checkAuth);
     app.use("/breadcrumb", breadcrumbRouter);
-    app.use('/reviews', reviewRoutes);
-
+    app.use('/reviews', reviewRouter);
+    app.use("/", productRouter);
 }
 
 export default route;

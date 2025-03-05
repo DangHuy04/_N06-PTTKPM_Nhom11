@@ -1,4 +1,3 @@
-import User from '../model/User.js';
 import Cart from "../model/Cart.js";
 import Product from '../model/Products.js';
 import mongoose from 'mongoose';
@@ -7,14 +6,29 @@ const index = async(req, res) => {
     try {
         // Lấy thông tin người dùng
         const userId = req.session.user.id;
-        const user = await User.findById(userId);
-             
+        
+        // Lấy thông tin giỏ hàng của người dùng
+        const cart = await Cart.findOne({ userId: userId }); // Lấy giỏ hàng của user
+        const productIds = cart && cart.items ? cart.items.map(item => item.prodID) : [];
+        const products = await Product.find({ _id: { $in: productIds } }); 
+
+        const Amount =  cart.totalAmount.toLocaleString() + "₫"
+        
+        // Hàm xử lý danh sách sản phẩm
+        const formatProducts = (products) =>
+            products.map(product => ({
+                name: product.name,
+                price: product.price.toLocaleString() + "đ",
+                image: product.image,
+                color: product.specs.color,
+                Amount
+        }));
+
         res.render("cart", {
             title: "Giỏ hàng",
             layout: "cart",
-            user: {
-                username: user.name
-            }
+            Amount:  cart.totalAmount.toLocaleString() + "₫",
+            products: formatProducts(products)
         });
     } catch (error) {
         res.status(500).json(error.message);

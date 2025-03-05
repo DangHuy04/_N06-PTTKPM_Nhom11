@@ -22,7 +22,7 @@ class iphoneController {
 
       // Hàm xử lý danh sách sản phẩm
       const formatProducts = (products) =>
-        products.map(product => ({
+       products.map(product => ({
           name: product.name,
           productId: product.productId,
           price: product.price.toLocaleString() + "đ",
