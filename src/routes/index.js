@@ -10,6 +10,8 @@ import profileRouter from './profileRouter.js';
 import searchRoute from "./searchRoute.js";
 import breadcrumbRouter from "./breadcrumbRoute.js";
 import cartRouter from "./cartRouter.js"
+import reviewRoutes from './reviewRouter.js';
+
 
 function route(app) {
     app.use("/", homeRouter);
@@ -24,6 +26,8 @@ function route(app) {
     app.use("/search", searchRoute);
     app.use("/", productRouter);
     app.use("/breadcrumb", breadcrumbRouter);
+    app.use('/reviews', reviewRoutes);
+
 }
 
 export default route;

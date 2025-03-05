@@ -174,110 +174,9 @@
     </div>
 
 
-    {{!-- Đánh giá Tab --}}
     <div id="reviews" class="tab-pane">
-        <div class="container reviews-section">
-            <h1 style="margin-left: 3.5vw;">Đánh giá danh mục</h1>
-            <div class="reviews-grid">
-                {{!-- Left Column --}}
-                <div class="reviews-summary">
-                    <div class="rating-card">
-                        <div class="rating-average">
-                            <span class="rating-number">{{reviews.averageRating}}</span>
-                            <span class="total-reviews">{{reviews.totalReviews}} đánh giá</span>
-                        </div>
-
-                        <div class="rating-bars">
-                            {{#each reviews.ratingCounts}}
-                            <div class="rating-bar">
-                                <span class="star-count">{{stars}}</span>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: {{percentage}}%"></div>
-                                </div>
-                            </div>
-                            {{/each}}
-                        </div>
-
-                        <div class="review-form">
-                            <h2>Viết đánh giá của riêng bạn</h2>
-                            <form action="/reviews" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="productCategory" value="iphone">
-
-                                <div class="rating-select">
-                                    <span>Chất lượng*:</span>
-                                    <div class="stars">
-                                        <input type="radio" id="star1" name="rating" value="1">
-                                        <label for="star1"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star2" name="rating" value="2">
-                                        <label for="star2"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star3" name="rating" value="3">
-                                        <label for="star3"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star4" name="rating" value="4">
-                                        <label for="star4"><i class="bi bi-star-fill"></i></label>
-                                        <input type="radio" id="star5" name="rating" value="5" checked>
-                                        <label for="star5"><i class="bi bi-star-fill"></i></label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <h2>Tên của bạn:</h2>
-                                    <input type="text" name="name" placeholder="Tên của bạn" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <h2>Đánh giá:</h2>
-                                    <textarea name="comment" placeholder="Đánh giá danh mục" required></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="upload-btn">
-                                        <i class="bi bi-upload"></i> Upload image
-                                        <input type="file" name="image" accept="image/*" hidden>
-                                    </label>
-                                </div>
-
-                                <button type="submit" class="submit-btn">Gửi</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                {{!-- Right Column --}}
-                <div class="reviews-list">
-                    {{#each reviews.list}}
-                    <div class="review-item">
-                        <div class="review-avatar">
-                            {{#if image}}
-                            <img src="{{image}}" alt="{{name}}">
-                            {{else}}
-                            <i class="bi bi-person-circle"></i>
-                            {{/if}}
-                        </div>
-                        <div class="review-content">
-                            <div class="review-header">
-                                <h3>{{name}} <span class="review-date">{{createdAt}}</span></h3>
-                            </div>
-                            <div class="review-rating">
-                                <div class="stars">
-                                    {{#times rating}}
-                                    <i class="bi bi-star-fill"></i>
-                                    {{/times}}
-                                </div>
-                                <p>{{comment}}</p>
-                            </div>
-                            {{#if image}}
-                            <div class="review-image">
-                                <img src="{{image}}" alt="Review image">
-                            </div>
-                            {{/if}}
-                        </div>
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-        </div>
+        {{>review}}
     </div>
-</div>
 </div>
 
 
@@ -295,12 +194,10 @@
 
 {{!-- Script xử lý tabs và variants --}}
 <script>
-    // Script xử lý tabs
     document.addEventListener('DOMContentLoaded', function () {
+        /* --- Tab Switching và Variants --- */
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabPanes = document.querySelectorAll('.tab-pane');
-
-        // Xử lý chuyển tab
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -309,10 +206,9 @@
                 const tabId = button.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
             });
-        });
+    });
 
-    // Xử lý variants
-    const variants = {{{ variants }}}; // Nhận dữ liệu variants từ server
+    const variants = {{{ variants }}}; // Dữ liệu variants từ server
     const storageButtons = document.querySelectorAll('.storage-btn');
     const colorButtons = document.querySelectorAll('.color-btn');
     const productImage = document.getElementById('productImage');
@@ -323,16 +219,10 @@
     let selectedColor = '';
 
     function updateProduct() {
-        const variant = variants.find(v =>
-            v.storage === selectedStorage &&
-            v.color === selectedColor
-        );
-
+        const variant = variants.find(v => v.storage === selectedStorage && v.color === selectedColor);
         if (variant) {
             productImage.src = variant.image;
             productPrice.textContent = variant.price.toLocaleString() + 'đ';
-
-            // Cập nhật trạng thái còn hàng
             if (variant.stock > 0) {
                 stockStatus.className = 'stock in-stock';
                 stockStatus.textContent = 'Còn hàng';
@@ -343,7 +233,6 @@
         }
     }
 
-    // Xử lý sự kiện click cho nút chọn bộ nhớ
     storageButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             storageButtons.forEach(b => b.classList.remove('selected'));
@@ -353,7 +242,6 @@
         });
     });
 
-    // Xử lý sự kiện click cho nút chọn màu
     colorButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             colorButtons.forEach(b => b.classList.remove('selected'));
@@ -363,7 +251,6 @@
         });
     });
 
-    // Tự động chọn option đầu tiên
     if (storageButtons.length) storageButtons[0].click();
     if (colorButtons.length) colorButtons[0].click();
     });
