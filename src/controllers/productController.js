@@ -10,6 +10,8 @@ class ProductController {
         return res.status(404).send("Sản phẩm không tồn tại");
       }
 
+      const prodID = product._id;
+
       // Truy vấn đánh giá theo productId (nếu review dành riêng cho sản phẩm) hoặc theo category
       const reviews = await Review.find({ productId: product.productId }).sort({ createdAt: -1 });
       
@@ -47,6 +49,7 @@ class ProductController {
         hideBanner: true,
         hideNavbar: true,
         name: product.name,
+        prodID,
         price: product.price.toLocaleString() + "đ",
         image: product.image,
         description: product.description,

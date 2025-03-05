@@ -184,3 +184,39 @@ style.textContent = `
 }
 `;
 document.head.appendChild(style);
+
+// Chặn truy cập vào giỏ hàng nếu chưa đăng nhập
+document.getElementById("giohang").addEventListener("click", function (event) {
+    event.preventDefault(); 
+
+    fetch("/cart", { method: "GET", headers: { "X-Requested-With": "XMLHttpRequest" } })
+    .then(response => {
+        if (response.status === 401) {
+            throw new Error("unauthorized");
+        }
+        return response.text();
+    })
+    .then(html => {
+        document.location.href = "/cart"; // Nếu đã đăng nhập, chuyển hướng vào giỏ hàng
+    })
+    .catch(error => {
+        if (error.message === "unauthorized") {
+            Swal.fire({
+                icon: "warning",
+                html: "<b>Vui lòng đăng nhập hoặc đăng ký để sử dụng giỏ hàng.</b>",
+                showCancelButton: true,
+                confirmButtonText: "Đăng nhập",
+                cancelButtonText: "Đăng ký",
+                reverseButtons: true,
+                showCloseButton: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/login";
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    window.location.href = "/register";
+                }
+            });
+        }
+    });
+});
+

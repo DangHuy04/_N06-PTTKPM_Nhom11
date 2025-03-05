@@ -4,7 +4,7 @@ const cartSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     items: [
         {
-            objectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+            prodID: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
             name: { type: String },
             price: { type: Number, required: true },
             quantity: { type: Number, required: true, default: 1 }
@@ -19,7 +19,7 @@ const cartSchema = new mongoose.Schema({
 cartSchema.pre('save', async function(next) {
     for (let item of this.items) {
         if (!item.price) {
-            const product = await mongoose.model('Product').findById(item.productId);
+            const product = await mongoose.model('Product').findById(item.prodID);
             if (product) {
                 item.price = product.price;
             }
