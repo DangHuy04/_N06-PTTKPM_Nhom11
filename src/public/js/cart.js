@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 // Gửi dữ liệu lên server bằng Fetch API
-function updateCart(prodID, quantity) {
+function updateCart(prodID, quantity, remove = false) {
     fetch("/cart/update-cart", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prodID, quantity })
+        body: JSON.stringify({ prodID, quantity, remove })
     })
     .then(response => response.json())
     .then(data => {
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             input.value = quantity; // Cập nhật số lượng trên giao diện
-            updateCart(prodID, quantity); // Gửi cập nhật lên server
+            updateCart(prodID, quantity); // Gửi cập nhật lên server qua hàm
         });
     });
 
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".quantity-input").forEach(input => {
         input.addEventListener("change", function () {
             let quantity = parseInt(this.value);
-            let prodID = this.dataset.productId; // Lấy ID từ input
+            let prodID = this.dataset.productId; 
 
             if (isNaN(quantity) || quantity < 1) {
                 this.value = 1;
@@ -93,6 +93,15 @@ document.addEventListener("DOMContentLoaded", function () {
             updateCart(prodID, quantity);
         });
     });
+
+    // Xử lý sự kiện khi bấm nút xóa
+    document.querySelectorAll(".remove-link").forEach(button => {
+        button.addEventListener("click", function () {
+            let prodID = this.dataset.prodId; 
+            updateCart(prodID, 0, true); // Gọi hàm cập nhật giỏ hàng với remove = true
+        });
+    });
+
 });
 
 

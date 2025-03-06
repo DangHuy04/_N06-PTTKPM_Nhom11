@@ -12,41 +12,42 @@
             <p class="cart-title" style="color: #000;">Giỏ hàng của {{user.username}}</p>
         </div>
     </div>
-    <div class="container">
+    
+    <div class="card p-3" style="border-radius: 12px 12px 0 0"> 
         {{#each products}}
-        <div class="card p-3" style="border-radius: 12px 12px 0 0">
-            <div class="row mt-4">
-                <div class="col-3">
+        <div class="product-item mt-2 p-3 {{#unless @last}}border-bottom mx-auto{{/unless}}">
+            <div class="row">
+                <div class="col-3 d-flex flex-column align-items-center">
                     <img src="{{this.image}}" alt="{{this.name}}" class="products-image">
+                <button class="remove-link btn btn-outline-danger btn-sm" data-prod-id="{{this.id}}">× Xoá</button>
                 </div>
                 <div class="col-9">
                     <div class="d-flex justify-content-between">
                         <b class="mb-1">{{this.name}}</b>
-                        <span class="price">{{this.price}}</span>
+                        <span class="price">{{this.totalPrice}}</span>
                     </div>
-                    {{!-- <p class="text-muted mb-1">Màu sắc: {{this.color}}</p> --}}
                     <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <a href="#" class="remove-link">× Xoá</a>
-                        </div>
                         <div class="quantity-selector">
                             <button class="quantity-btn decrease" data-product-id="{{this.id}}">-</button>
-                            <input type="text" class="quantity-input" value="{{this.quantity}}" data-product-id="{{this.id}}">
+                            <input type="text" class="quantity-input" value="{{this.quantity}}"
+                                data-product-id="{{this.id}}">
                             <button class="quantity-btn increase" data-product-id="{{this.id}}">+</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-2 mb-3">
-                <div class="col-md-6">
-                    <span class="mb-0"><b>Tạm tính</b> ({{products.length}} sản phẩm):</span>
-                </div>
-                <span class="col-md-6 price">{{#if Amount}}{{Amount}}{{else}}0₫{{/if}}</span>
-            </div>
         </div>
         {{/each}}
-    </div>
 
+        <!-- Hiển thị tổng tiền giỏ hàng ở dưới cùng -->
+        <div class="row mt-2 mb-3 p-3">
+            <div class="col-md-6">
+                <span class="mb-0"><b>Tạm tính</b> ({{products.length}} sản phẩm):</span>
+            </div>
+            <span class="col-md-6 price">{{#if Amount}}{{Amount}}{{else}}0₫{{/if}}</span>
+        </div>
+    </div>
+   
     <div class="card p-3">
         <b class="section-title">Thông tin khách hàng</b>
         <div>
@@ -125,7 +126,7 @@
         </div>
         <div class="d-flex justify-content-between align-items-center mb-5 total-cost">
             <b class="section-title">Tổng tiền:</b>
-            <span class="total-price">30.990.000₫</span>
+            <span class="total-price">{{#if Amount}}{{Amount}}{{else}}0₫{{/if}}</span>
         </div>
         <button class="checkout-btn">Tiến hành đặt hàng</button>
         

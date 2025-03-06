@@ -85,7 +85,7 @@
 
             <!-- Nút mua hàng -->
             <div class="actions">
-                <button class="button primary">Mua ngay</button>
+                <button onclick="buyNow('{{prodID}}')" class="button primary">Mua ngay</button>
                 <button onclick="addToCart('{{prodID}}')" class="button secondary">Thêm vào giỏ hàng</button>
             </div>
         </div>
@@ -290,4 +290,36 @@
             }
         });
     }
+
+    // Xử lí khi bấm nút mua ngay   
+    function buyNow(prodID) {
+        fetch('/cart/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prodID, quantity: 1 })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = "/cart";
+            } else {
+                Swal.fire({
+                    icon: "warning",
+                    html: "<b>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</b>",
+                    showCancelButton: true,
+                    confirmButtonText: "Đăng nhập",
+                    cancelButtonText: "Đăng ký",
+                    reverseButtons: true,
+                    showCloseButton: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/login";  // Chuyển đến trang đăng nhập
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "/register";  // Chuyển đến trang đăng ký
+                    }
+                });
+            }
+        });
+    }
+     
 </script>
