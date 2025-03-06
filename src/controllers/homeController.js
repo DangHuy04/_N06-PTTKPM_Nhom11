@@ -16,12 +16,13 @@ class homeController {
             for (let i = 0; i < sliderBanners.length; i += 3) {
                 groupedSliderBanners.push(sliderBanners.slice(i, i + 3));
             }
-            // Lấy tất cả sản phẩm theo từng loại
+            // Lấy tối đa 4 sản phẩm cho mỗi danh mục
             const [iphones, ipads, macs] = await Promise.all([
-                Product.find({ category: "iphone" }),
-                Product.find({ category: "ipad" }),
-                Product.find({ category: "mac" })
+                Product.find({ category: "iphone" }).limit(4),
+                Product.find({ category: "ipad" }).limit(4),
+                Product.find({ category: "mac" }).limit(4)
             ]);
+
 
             // Hàm xử lý danh sách sản phẩm
             const formatProducts = (products) =>
@@ -38,7 +39,7 @@ class homeController {
             res.render("home", {
                 banner: "../img/banner-footer.png",
                 layout: "home",
-                title:  "Apple Store",
+                title: "Apple Store",
                 banners: [
                     "../img/banner_home_1.png",
                     "../img/banner_home_2.png",
