@@ -92,8 +92,6 @@
     </div>
 </div>
 
-
-
 {{!-- Related Products Section --}}
 <div class="container">
     <b>
@@ -101,7 +99,7 @@
     </b>
     <div class="grid">
         {{#each products}}
-        <a href="/{{prodID}}" class="card-link">
+        <a href="/{{productId}}" class="card-link">
             <div class="card">
                 {{#if discount}}
                 <div class="badge discount">{{discount}}</div>
@@ -135,7 +133,7 @@
         <div id="description" class="tab-pane active">
             <div class="description-images">
                 {{#each images}}
-                <img src="{{this}}" alt="{{../name}}" class="img-fluid mb-3" style="max-width: 100%; display: block;" />
+                <img src="{{this}}" alt="{{../name}}" class="img-fluid mb-3" style="max-width: 100%; display: block; border-radius: 10px;margin-top: 20px;" />
                 {{/each}}
             </div>
         </div>

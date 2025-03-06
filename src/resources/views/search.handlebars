@@ -1,28 +1,170 @@
-<h2 class="text-center" style="font-weight: 600; margin: 50px;">Kết quả tìm kiếm cho "{{keyword}}"</h2>
+<div class="search-container">
+    <h2 class="text-center" style="font-weight: 600; margin: 50px;">Kết quả tìm kiếm cho "{{keyword}}"</h2>
 
-{{#if products.length}}
-    <div class="grid">
-        {{#each products}}
-        <a href="/{{productId}}" class="card-link">
-            <div class="card">
-                {{#if discount}}
-                <div class="badge discount">{{discount}}</div>
-                {{/if}}
-                {{#if installment}}
-                <div class="badge installment">{{installment}}</div>
-                {{/if}}
-                <img src="{{image}}" alt="{{name}}">
-                <h2>{{name}}</h2>
-                <p class="price">{{price}}</p>
-                {{#if oldPrice}}
-                <p class="old-price">{{oldPrice}}</p>
-                {{/if}}
-            </div>
-        </a>
-        {{/each}}
+    <!-- Phần filter -->
+    <div class="filter-section">
+        <div class="price-ranges">
+            <a href="/search?query={{keyword}}" class="price-range-btn {{#unless priceRange}}active{{/unless}}">
+                Tất cả
+            </a>
+            <a href="/search?query={{keyword}}&priceRange=0-5000000" class="price-range-btn {{#if (eq priceRange '0-5000000')}}active{{/if}}">
+                Dưới 5 triệu
+            </a>
+            <a href="/search?query={{keyword}}&priceRange=5000000-10000000" class="price-range-btn {{#if (eq priceRange '5000000-10000000')}}active{{/if}}">
+                5 - 10 triệu
+            </a>
+            <a href="/search?query={{keyword}}&priceRange=10000000-20000000" class="price-range-btn {{#if (eq priceRange '10000000-20000000')}}active{{/if}}">
+                10 - 20 triệu
+            </a>
+            <a href="/search?query={{keyword}}&priceRange=20000000-999999999" class="price-range-btn {{#if (eq priceRange '20000000-999999999')}}active{{/if}}">
+                Trên 20 triệu
+            </a>
+        </div>
+
+         <!-- Phần sắp xếp -->
+        <div class="sort-section">
+            <span class="sort-label">Sắp xếp theo:</span>
+            <a href="/search?query={{keyword}}{{#if priceRange}}&priceRange={{priceRange}}{{/if}}" 
+               class="sort-btn {{#unless sort}}active{{/unless}}">
+                Mặc định
+            </a>
+            <a href="/search?query={{keyword}}&sort=asc{{#if priceRange}}&priceRange={{priceRange}}{{/if}}" 
+               class="sort-btn {{#if (eq sort 'asc')}}active{{/if}}">
+                Giá tăng dần
+            </a>
+            <a href="/search?query={{keyword}}&sort=desc{{#if priceRange}}&priceRange={{priceRange}}{{/if}}" 
+               class="sort-btn {{#if (eq sort 'desc')}}active{{/if}}">
+                Giá giảm dần
+            </a>
+        </div>
     </div>
-{{else}}
-    <p class="text-center">Không tìm thấy sản phẩm nào.</p>
-{{/if}}
+
+    <!-- Phần hiển thị sản phẩm -->
+    {{#if products.length}}
+        <div class="grid">
+            {{#each products}}
+            <a href="/{{productId}}" class="card-link">
+                <div class="card">
+                    {{#if discount}}
+                    <div class="badge discount">{{discount}}</div>
+                    {{/if}}
+                    {{#if installment}}
+                    <div class="badge installment">{{installment}}</div>
+                    {{/if}}
+                    <img src="{{image}}" alt="{{name}}">
+                    <h2>{{name}}</h2>
+                    <p class="price">{{price}}</p>
+                    {{#if oldPrice}}
+                    <p class="old-price">{{oldPrice}}</p>
+                    {{/if}}
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    {{else}}
+        <p class="text-center">Không tìm thấy sản phẩm nào.</p>
+    {{/if}}
+</div>
 
 <link rel="stylesheet" href="../css/home.css">
+
+<style>
+.search-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.filter-section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.price-ranges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.price-range-btn {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.price-range-btn:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.price-range-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .price-ranges {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .price-range-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+.sort-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sort-label {
+    color: #666;
+    font-size: 14px;
+}
+
+.sort-btn {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.sort-btn:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.sort-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .sort-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .sort-btn {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+}
+</style>
