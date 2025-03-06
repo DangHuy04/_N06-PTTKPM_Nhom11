@@ -51,13 +51,13 @@ class macController {
                     products: formatProducts(macs),
                     infoSections: [
                         {
-                            img: '../img/mac.png',
+                            img: '../img/find-mac.png',
                             title: 'Tìm Mac phù hợp với bạn',
                             link: '/compare',
                             linkText: 'So sánh các Mac ›'
                         },
                         {
-                            img: '../img/mac.png',
+                            img: '../img/phukien-dikem-mac.png',
                             title: 'Phụ kiện Mac thường mua kèm',
                             link: '/accessories',
                             linkText: 'Tìm phụ kiện ›'
@@ -65,8 +65,10 @@ class macController {
                     ],
                     aboutSections: [
                         {
-                            title: 'bla bla',
-                            content: 'ble ble'
+                            title1: 'Giới thiệu về Apple Mac',
+                            content1: 'Apple Mac là dòng máy tính của thương hiệu Apple Inc. phổ biến trên toàn thế giới và được đông đảo người dùng yêu thích. Tính đến thời điểm hiện tại, Apple mang đến cho người dùng 5 dòng sản phẩm về Mac, đó là: MacBook, iMac, Mac mini, Mac Pro, Mac Studio và Displays. Đây đều là những sản phẩm vô cùng nổi tiếng trên thị trường và mang đến cho người dùng những trải nghiệm vô cùng tuyệt vời.',
+                            title2: 'Giới thiệu về MacBook',
+                            content2: 'MacBook là dòng máy tính xách tay của Apple Inc. sản xuất và phát triển. Đặc trưng của dòng này là thiết kế sang trọng cùng trải nghiệm mượt mà, mà nó đem lại nhờ chạy hệ điều hành macOS – hệ điều hành do chính Apple phát triển. MacBook có 2 dòng sản phẩm chính là MacBook Air và MacBook Pro. Ngoài ra, Apple còn phát triển thêm dòng MacBook M1 sử dụng con chip Apple Silicon M1 do chính Apple sản xuất (trước đó họ sử dụng chip Intel hoặc AMD – một bên thứ 3 cung cấp chipset CPU).'
                         }
                     ],
                     reviews: {

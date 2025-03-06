@@ -50,13 +50,13 @@ class iphoneController {
           products: formatProducts(iphones),
           infoSections: [
             {
-              img: '../img/iphone16.png',
+              img: '../img/find-ip.png',
               title: 'Tìm iPhone phù hợp với bạn',
               link: '/compare',
               linkText: 'So sánh các iPhone ›'
             },
             {
-              img: '../img/iphone16.png',
+              img: '../img/phukien-dikem-ip.png',
               title: 'Phụ kiện iPhone thường mua kèm',
               link: '/accessories',
               linkText: 'Tìm phụ kiện ›'
@@ -64,8 +64,10 @@ class iphoneController {
           ],
           aboutSections: [
             {
-              title: 'bla bla',
-              content: 'ble ble'
+              title1: 'Lịch sử hình thành, phát triển của iPhone',
+              content1: 'iPhone là dòng điện thoại thông minh được phát triển từ Apple Inc, được ra mắt lần đầu tiên bởi Steve Jobs và mở bán năm 2007. Bên cạnh tính năng của một máy điện thoại thông thường, iPhone còn được trang bị màn hình cảm ứng, camera, khả năng chơi nhạc và chiếu phim, trình duyệt web... Phiên bản thứ hai là iPhone 3G ra mắt tháng 7 năm 2008, được trang bị thêm hệ thống định vị toàn cầu, mạng 3G tốc độ cao. Trải qua 15 năm tính đến nay đã có đến 34 mẫu iPhone được sản xuất từ dòng 2G cho đến iPhone 13 Pro Max và Apple là một trong những thương hiệu điện thoại được yêu thích và sử dụng phổ biến nhất trên thế giới.',
+              title2: 'Các dòng iPhone phổ biến hiện nay',
+              content2: 'Hiện nay, iPhone đã phát triển đến thế hệ thứ 16 với các mẫu như iPhone 16 Pro Max, iPhone 16 Pro, iPhone 16, iPhone 16 Mini. Đây là những sản phẩm cao cấp, được trang bị nhiều công nghệ mới và hiện đại nhất của Apple. Ngoài ra, iPhone còn có các dòng sản phẩm khác như iPhone 15, iPhone 14, iPhone 13, iPhone 12, iPhone 11, iPhone SE... với nhiều mức giá và cấu hình khác nhau để phù hợp với nhu cầu sử dụng của người tiêu dùng.',
             }
           ],
           reviews: {
