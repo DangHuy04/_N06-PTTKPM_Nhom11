@@ -1,20 +1,21 @@
 {{!--Cart--}}
-<div class="navbar">
-    <div class="container d-flex justify-content-between align-items-center" style="margin-top: 4rem">
-        <a href="/" class="back-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-            </svg>
-            &nbsp;
-            Về trang chủ 
-        </a>
-        <p class="cart-title" style="color: #000;">Giỏ hàng của {{user.username}}</p>
+<div class="container" style="width: 40%;">
+    <div class="navbar">
+        <div class="container d-flex justify-content-between align-items-center" style="margin-top: 4rem">
+            <a href="/" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                &nbsp;
+                Về trang chủ 
+            </a>
+            <p class="cart-title" style="color: #000;">Giỏ hàng của {{user.username}}</p>
+        </div>
     </div>
-</div>
     <div class="container">
         {{#each products}}
         <div class="card p-3" style="border-radius: 12px 12px 0 0">
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-3">
                     <img src="{{this.image}}" alt="{{this.name}}" class="products-image">
                 </div>
@@ -23,15 +24,15 @@
                         <b class="mb-1">{{this.name}}</b>
                         <span class="price">{{this.price}}</span>
                     </div>
-                    <p class="text-muted mb-1">Màu sắc: {{this.color}}</p>
+                    {{!-- <p class="text-muted mb-1">Màu sắc: {{this.color}}</p> --}}
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <a href="#" class="remove-link">× Xoá</a>
                         </div>
                         <div class="quantity-selector">
-                            <button class="quantity-btn">-</button>
-                            <input type="text" class="quantity-input" value="1">
-                            <button class="quantity-btn">+</button>
+                            <button class="quantity-btn decrease" data-product-id="{{this.id}}">-</button>
+                            <input type="text" class="quantity-input" value="{{this.quantity}}" data-product-id="{{this.id}}">
+                            <button class="quantity-btn increase" data-product-id="{{this.id}}">+</button>
                         </div>
                     </div>
                 </div>
@@ -89,13 +90,13 @@
         <div class="bg-light mb-3 p-3 rounded">
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <select class="form-select" style="font-size: 14px;">
+                    <select id="province" class="form-select" style="font-size: 14px;">
                         <option selected>Chọn tỉnh, thành phố</option>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-select" style="font-size: 14px;">
-                        <option selected disabled></option>
+                    <select id="district" class="form-select" style="font-size: 14px;">
+                        <option selected>Chọn quận, huyện</option>
                     </select>
                 </div>
             </div>
@@ -132,5 +133,5 @@
     </div>
 </div>
 <link rel="stylesheet" href="../css/cart.css">
-
+<script src="../js/cart.js"></script>
 

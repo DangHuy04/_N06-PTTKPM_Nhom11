@@ -2,38 +2,54 @@ import Cart from "../model/Cart.js";
 import Product from '../model/Products.js';
 import mongoose from 'mongoose';
 
-const index = async(req, res) => {
+const index = async (req, res) => {
     try {
         // Lấy thông tin người dùng
         const userId = req.session.user.id;
         
         // Lấy thông tin giỏ hàng của người dùng
-        const cart = await Cart.findOne({ userId: userId }); // Lấy giỏ hàng của user
-        const productIds = cart && cart.items ? cart.items.map(item => item.prodID) : [];
-        const products = await Product.find({ _id: { $in: productIds } }); 
+        const cart = await Cart.findOne({ userId: userId });
 
-        const Amount =  cart.totalAmount.toLocaleString() + "₫"
+        // Nếu giỏ hàng không tồn tại hoặc không có sản phẩm
+        if (!cart || !cart.items.length) {
+            return res.render("empty_cart", {
+                title: "Giỏ hàng",
+                layout: "cart"
+            });
+        }
+
+        // Lấy danh sách sản phẩm trong giỏ hàng
+        const prodIDs = cart.items.map(item => item.prodID);
+        const products = await Product.find({ _id: { $in: prodIDs } });
+
+        const Amount = cart.totalAmount.toLocaleString() + "₫";
         
-        // Hàm xử lý danh sách sản phẩm
-        const formatProducts = (products) =>
-            products.map(product => ({
-                name: product.name,
-                price: product.price.toLocaleString() + "đ",
-                image: product.image,
-                color: product.specs.color,
-                Amount
-        }));
+        // Xử lý danh sách sản phẩm
+        const formatProducts = (products, cart) => 
+            products.map(product => {
+                // Tìm sản phẩm trong giỏ hàng theo ID
+                const cartItem = cart.items.find(item => item.prodID.toString() === product._id.toString());
+                return {
+                    id: product._id,
+                    name: product.name,
+                    price: product.price.toLocaleString() + "đ",
+                    image: product.image,
+                    color: product.specs.color,
+                    quantity: cartItem ? cartItem.quantity : 0, // Thêm số lượng vào
+                    Amount
+                };
+            });
 
         res.render("cart", {
             title: "Giỏ hàng",
             layout: "cart",
-            Amount:  cart.totalAmount.toLocaleString() + "₫",
-            products: formatProducts(products)
+            Amount,
+            products: formatProducts(products, cart)
         });
     } catch (error) {
         res.status(500).json(error.message);
     }
-}
+};
 
 const addToCart = async(req, res) => {
     try {
@@ -69,5 +85,36 @@ const addToCart = async(req, res) => {
         res.status(500).json({ success: false, message: "Lỗi server", error: error.message });
     }
 }
+
+const updateCart = async (req, res) => {
+    try {
+        const { prodID, quantity } = req.body;
+        const userId = req.session.user.id;
+
+        let cart = await mongoose.model('Cart').findOne({ userId });
+
+        if (!cart) {
+            return res.status(404).json({ message: "Cart not found" });
+        }
+
+        const itemIndex = cart.items.findIndex(item => item.prodID && item.prodID.toString() === prodID.toString());
+
+        if (itemIndex > -1) {
+            if (quantity > 0) {
+                cart.items[itemIndex].quantity = quantity; // Cập nhật số lượng
+            } else {
+                cart.items.splice(itemIndex, 1); // Xóa nếu số lượng về 0
+            }
+
+            await cart.save();
+            return res.status(200).json({ success: true, message: "Cart updated successfully", cart });
+        } else {
+            return res.status(404).json({ message: "Product not found in cart" });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Lỗi server", error: error.message });
+    }
+};
+
     
-export { index , addToCart };
+export { index , addToCart , updateCart };
