@@ -51,13 +51,13 @@ class ipadController {
                     products: formatProducts(ipads),
                     infoSections: [
                         {
-                            img: '../img/ipad.png',
+                            img: '../img/find-ipad.png',
                             title: 'Tìm iPad phù hợp với bạn',
                             link: '/compare',
                             linkText: 'So sánh các iPad ›'
                         },
                         {
-                            img: '../img/ipad.png',
+                            img: '../img/phukien-dikem-ipad.png',
                             title: 'Phụ kiện iPad thường mua kèm',
                             link: '/accessories',
                             linkText: 'Tìm phụ kiện ›'
@@ -65,8 +65,10 @@ class ipadController {
                     ],
                     aboutSections: [
                         {
-                            title: 'bla bla',
-                            content: 'ble ble'
+                            title1: 'iPad là gì ?',
+                            content1: 'iPad là máy tính bảng do Apple Inc. phát triển. Được công bố vào ngày 27 tháng 1 năm 2010, thiết bị này tạo ra một phân loại mới giữa điện thoại thông minh và máy tính xách tay. Tương tự về tính năng so với thiết bị nhỏ và yếu hơn là iPhone hoặc iPod touch, iPad cũng hoạt động trên cùng hệ điều hành iPhone OS đã được sửa đổi với giao diện được thiết kế lại để phù hợp với màn hình lớn.',
+                            title2: 'Tại sao nên mua iPad ?',
+                            content2: 'iPad được trang bị các tính năng tiện ích để phục vụ công việc, nhu cầu giải trí hiệu quả. Với màn hình Retina sắc nét, hiệu suất mạnh mẽ từ chip Apple Silicon, và hệ sinh thái ứng dụng phong phú, iPad là công cụ đa năng phù hợp cho mọi đối tượng người dùng. Thời lượng pin dài, khả năng kết nối Apple Pencil và Magic Keyboard giúp nâng cao năng suất làm việc. Thiết kế mỏng nhẹ, sang trọng cùng nhiều tùy chọn kích thước màn hình từ 8.3 inch đến 12.9 inch đáp ứng đa dạng nhu cầu sử dụng. iPad còn được Apple hỗ trợ cập nhật phần mềm lâu dài, đảm bảo thiết bị luôn được bảo mật và cập nhật tính năng mới nhất. Đặc biệt, với iPadOS được tối ưu riêng, iPad mang đến trải nghiệm đa nhiệm, đa phương tiện vượt trội so với các máy tính bảng thông thường khác trên thị trường.'                            
                         }
                     ],
                     reviews: {
